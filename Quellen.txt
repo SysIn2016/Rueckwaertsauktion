@@ -3,3 +3,11 @@ https://devcenter.heroku.com/articles/create-a-java-web-application-using-embedd
 
 Animierte html-Buttons:
 http://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_animate1
+
+Popups in HTML:
+http://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2
+
+Java Auslesen eines Requests:
+http://www.java2s.com/Code/Java/JSP/JspformUsingButtons.htm
+
+
