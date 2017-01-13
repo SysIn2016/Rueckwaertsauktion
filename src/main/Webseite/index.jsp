@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="logik" class="Sysint2016.Rueckwaertsauktion.AuktionLogik"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,13 +25,13 @@
 				Diese Webseite ist ein Projekt im Rahmen einer Lehrveranstaltung im
 				Studium.<br> Es werden keine echten Auktionen angeboten!!!<br>
 				<% 
-            //if(request.getParameter("buttonName") != null) {
-            if(request.getParameterNames() != null) {
+            if(request.getParameter("Name") != null && request.getParameter("Passwort") != null) {
         %>
             Name: <%= request.getParameter("Name") %>
             Passwort: 
             <%= request.getParameter("Passwort") %>
         <%
+            out.print(logik.setProdukt("13.01.2017", 4));
             }
         %>
 			</div>
