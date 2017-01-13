@@ -7,6 +7,7 @@
 <title>Rueckwaertsauktion</title>
 <link rel="stylesheet" type="text/css" href="Rueckwaertsauktion.css">
 <link rel="stylesheet" type="text/css" href="Popup.css">
+<script type="text/javascript" src="Rueckwaertsauktion.js"></script>
 </head>
 <body bgcolor="#D3FFCE">
 	<div id="main">
@@ -26,7 +27,7 @@
             //if(request.getParameter("buttonName") != null) {
             if(request.getParameterNames() != null) {
         %>
-            Name:<%= request.getParameter("Name") %>
+            Name: <%= request.getParameter("Name") %>
             Passwort: 
             <%= request.getParameter("Passwort") %>
         <%
@@ -80,40 +81,34 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Skript zu den Popups -->
+	<script type="text/javascript" language="JavaScript">
+	// Get the modal
+	var modal = document.getElementById('login');
 
-	<!-- Javascript zu den Popup -->
-	<script>
-// Get the modal
-var modal = document.getElementById('login');
-
-// Get the button that opens the modal
-var btn = document.getElementById("loginButton");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-function einloggen(){
-	document.form1.Name.value = document.getElementById("AnmeldenameText").value;
-	document.form1.Passwort.value = document.getElementById("PasswortText").value;
-    form1.submit();
-}
-</script>
+	// Get the button that opens the modal
+	var btn = document.getElementById("loginButton");
+	
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	
+	// When the user clicks the button, open the modal 
+	btn.onclick = function() {
+	    modal.style.display = "block";
+	}
+	
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	    modal.style.display = "none";
+	}
+	
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+	</script>
 </body>
 </html>
