@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="logik" class="Sysint2016.Rueckwaertsauktion.AuktionLogik"/>
+<jsp:useBean id="anmeldung" class="Sysint2016.Rueckwaertsauktion.Anmeldung"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,9 +28,8 @@
 				<% 
             if(request.getParameter("Name") != null && request.getParameter("Passwort") != null) {
         %>
-            Name: <%= request.getParameter("Name") %>
-            Passwort: 
-            <%= request.getParameter("Passwort") %>
+            Angemeldet: <% out.print(anmeldung.anmelden(request.getParameter("Name"), request.getParameter("Passwort"))); %>
+            
         <%
             out.print(logik.setProdukt("13.01.2017", 4));
             }
