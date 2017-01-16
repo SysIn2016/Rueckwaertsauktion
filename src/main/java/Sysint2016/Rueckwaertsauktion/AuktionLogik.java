@@ -2,6 +2,14 @@ package Sysint2016.Rueckwaertsauktion;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Diese Klasse enthaelt die Auktionslogik. <br>
+ * D.h. die Verwaltung der Produktlisten, die Methoden zum Einstellen eines
+ * neuen Produkts, die Methoden zum abgeben eines Gebots
+ * 
+ * @author arbeit
+ * 
+ */
 public class AuktionLogik {
 
 	/*
@@ -10,8 +18,11 @@ public class AuktionLogik {
 	 */
 	private static ConcurrentHashMap<String, Integer> auktionsliste;
 
+	private static Produktverwaltung produktverwaltung;
+
 	static {
 		auktionsliste = new ConcurrentHashMap<String, Integer>();
+		produktverwaltung = new Produktverwaltung();
 	}
 
 	/**
@@ -51,5 +62,19 @@ public class AuktionLogik {
 			produktID = auktionsliste.get(datum);
 		}
 		return produktID;
+	}
+
+	/**
+	 * Diese Methode wird benutzt um ein neues Produkt zu speichern.
+	 * 
+	 * @param produktname
+	 * @param produktbeschreibung
+	 * @param einstellerID
+	 * @param bildID
+	 */
+	public static void erzeugeProdukt(String produktname,
+			String produktbeschreibung, int einstellerID, int bildID) {
+		produktverwaltung.speicherProdukt(new Produkt(produktname,
+				produktbeschreibung, einstellerID, bildID));
 	}
 }

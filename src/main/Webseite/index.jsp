@@ -31,7 +31,6 @@
             Angemeldet: <% out.print(anmeldung.anmelden(request.getParameter("Name"), request.getParameter("Passwort"))); %>
             
         <%
-            out.print(logik.setProdukt("13.01.2017", 4));
             }
         %>
 			</div>
