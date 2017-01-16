@@ -3,3 +3,7 @@ function einloggen(){
 	document.form1.Passwort.value = document.getElementById("PasswortText").value;
     form1.submit();
 }
+
+function produktEinstellen(){
+	
+}

@@ -48,7 +48,7 @@
 					alt="Produktbild ist nicht sichtbar">
 			</div>
 			<div id="Registrierung">
-				<button class="button">
+				<button class="button" id="produktEinstellenButton">
 					<span>Produkt einstellen</span>
 				</button>
 				<button class="button">
@@ -64,7 +64,7 @@
 		<!-- Modal content -->
 		<div class="modal-content">
 			<div class="modal-header">
-				<span class="close">&times;</span>
+				<span class="close" id="schliessenAnmelden">&times;</span>
 				<h2>Login</h2>
 			</div>
 			<div class="modal-body">
@@ -82,31 +82,78 @@
 		</div>
 	</div>
 	
-	<!-- Skript zu den Popups -->
+	<!--  Popup Login -->
+	<div id="produktEinstellen" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" id="schliessenProduktEinstellen">&times;</span>
+				<h2>Login</h2>
+			</div>
+			<div class="modal-body">
+				<FORM NAME="form2" METHOD="POST">
+					<INPUT TYPE="text" placeholder="Produktname" id="ProduktnameText"> <br>
+					<TEXTAREA rows="20" cols="200" id="ProduktbeschreibungText">Produktbeschreibung bitte eingeben. Bedenken Sie, je besser ihre Produktbeschreibung, desto wahrscheinlicher sind viele Gebote.</TEXTAREA> <br>
+					<INPUT TYPE="file" accept="image/*">
+					<INPUT TYPE="button" VALUE="Produkt einstellen" ONCLICK="produktEinstellen()">
+				</FORM>
+			</div>
+			<div class="modal-footer">
+				<h3>Stellen Sie ihr Produkt ein.</h3>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Skript zu dem Einloggen-Popup -->
 	<script type="text/javascript" language="JavaScript">
 	// Get the modal
-	var modal = document.getElementById('login');
+	var einloggenPopup = document.getElementById('login');
 
 	// Get the button that opens the modal
-	var btn = document.getElementById("loginButton");
+	var einlogButton = document.getElementById("loginButton");
 	
 	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
+	var x = document.getElementById("schliessenAnmelden");
 	
 	// When the user clicks the button, open the modal 
-	btn.onclick = function() {
-	    modal.style.display = "block";
+	einlogButton.onclick = function() {
+		einloggenPopup.style.display = "block";
+	}
+	
+	// When the user clicks on <span> (x), close the modal
+	x.onclick = function() {
+		einloggenPopup.style.display = "none";
+	}
+	</script>
+	
+	<!-- Skript zu dem Produkt einstellen Popup -->
+	<script type="text/javascript" language="JavaScript">
+	// Get the modal
+	var produktEinstellenPopup = document.getElementById('produktEinstellen');
+
+	// Get the button that opens the modal
+	var produktEinstellenButton = document.getElementById("produktEinstellenButton");
+	
+	// Get the <span> element that closes the modal
+	var span = document.getElementById("schliessenProduktEinstellen");
+	
+	// When the user clicks the button, open the modal 
+	produktEinstellenButton.onclick = function() {
+		produktEinstellenPopup.style.display = "block";
 	}
 	
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
-	    modal.style.display = "none";
+		produktEinstellenPopup.style.display = "none";
 	}
 	
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
+	    if (event.target == produktEinstellenPopup) {
+	    	produktEinstellenPopup.style.display = "none";
+	    }
+	    if (event.target == einloggenPopup) {
+	    	einloggenPopup.style.display = "none";
 	    }
 	}
 	</script>
