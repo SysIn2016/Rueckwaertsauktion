@@ -48,7 +48,7 @@
 					alt="Produktbild ist nicht sichtbar">
 			</div>
 			<div id="Registrierung">
-				<button class="button" id="produktEinstellenButton" ONCLICK = "new PopupFenster('login', 'loginButton', 'schliessenAnmelden')">
+				<button class="button" id="produktEinstellenButton">
 					<span>Produkt einstellen</span>
 				</button>
 				<button class="button">
