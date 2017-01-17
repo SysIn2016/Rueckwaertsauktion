@@ -15,7 +15,7 @@
 	<div id="main">
 		<div id="oben">
 			<div id="Registrierung">
-				<button class="button">
+				<button class="button" id="registrierenButton">
 					<span>Registrieren</span>
 				</button>
 				<button class="button" id="loginButton">
@@ -100,6 +100,35 @@
 			</div>
 			<div class="modal-footer">
 				<h3>Stellen Sie ihr Produkt ein.</h3>
+			</div>
+		</div>
+	</div>
+	
+	<!--  Popup Registrierung -->
+	<div id="userRegistrieren" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" id="schliessenUserRegistrieren">&times;</span>
+				<h2>Login</h2>
+			</div>
+			<div class="modal-body">
+				<FORM NAME="form2" METHOD="POST">
+					<INPUT TYPE="text" placeholder="Vorname" id="UserVorname"> <br>
+					<INPUT TYPE="text" placeholder="Nachname" id="UserNachname"> <br>
+					<INPUT TYPE="text" placeholder="Username" id="UserUsername"> <br>
+					<INPUT TYPE="email" placeholder="E-Mailadresse" id="UserUsername"> <br>
+					<INPUT TYPE="password" placeholder="Passwort" id="UserPasswort"> <br>
+					<INPUT TYPE="password" placeholder="Passwort erneut eingeben" id="UserPasswortkontrolle"> <br>
+					<h3>Kontodaten</h3>
+					<INPUT TYPE="number" placeholder="Kontonummer" id="UserKontonummer"> <br>
+					<INPUT TYPE="text" placeholder="IBAN" id="UserIBAN"> <br>
+					<INPUT TYPE="text" placeholder="BIC" id="UserBIC"> <br>
+					<INPUT TYPE="button" VALUE="registrieren" ONCLICK="registrieren()">
+				</FORM>
+			</div>
+			<div class="modal-footer">
+				<h3>Registrieren Sie sich. Damit Sie für Produkte bieten k&ouml;nnen und welche einstellen k&ouml;nnen.</h3>
 			</div>
 		</div>
 	</div>

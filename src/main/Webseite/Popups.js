@@ -1,50 +1,68 @@
-// Get the modal
+/*
+ * Login Popup
+ */
+
 var einloggenPopup = document.getElementById('login');
-
-// Get the button that opens the modal
 var einlogButton = document.getElementById("loginButton");
-
-// Get the <span> element that closes the modal
 var x = document.getElementById("schliessenAnmelden");
 
-// When the user clicks the button, open the modal
+//Funktion beim Klicken des Buttons
 einlogButton.onclick = function() {
 	einloggenPopup.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
+//Funktion beim Klicken des x im Popup
 x.onclick = function() {
 	einloggenPopup.style.display = "none";
 }
 
+/*
+ * Produkt einstellen Popup
+ */
 
-
-
-// Get the modal
 var produktEinstellenPopup = document.getElementById('produktEinstellen');
-
-// Get the button that opens the modal
 var produktEinstellenButton = document.getElementById("produktEinstellenButton");
-
-// Get the <span> element that closes the modal
 var span = document.getElementById("schliessenProduktEinstellen");
 
-// When the user clicks the button, open the modal
+//Funktion beim Klicken des Buttons
 produktEinstellenButton.onclick = function() {
 	produktEinstellenPopup.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
+//Funktion beim Klicken des x im Popup
 span.onclick = function() {
 	produktEinstellenPopup.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
+/*
+ * Registrieren Popup
+ */
+
+var userRegistrierenPopup = document.getElementById('userRegistrieren');
+var userRegistrierenButton = document.getElementById("registrierenButton");
+var userRegistrierenSchliessen = document.getElementById("schliessenUserRegistrieren");
+
+//Funktion beim Klicken des Buttons
+userRegistrierenButton.onclick = function() {
+	userRegistrierenPopup.style.display = "block";
+}
+
+//Funktion beim Klicken des x im Popup
+userRegistrierenSchliessen.onclick = function() {
+	userRegistrierenPopup.style.display = "none";
+}
+
+/*
+ * Popups schliessen beim Klick ausserhalb des Popups
+ */
 window.onclick = function(event) {
     if (event.target == produktEinstellenPopup) {
     	produktEinstellenPopup.style.display = "none";
     }
     if (event.target == einloggenPopup) {
     	einloggenPopup.style.display = "none";
+    }
+    if (event.target == userRegistrierenPopup) {
+    	userRegistrierenPopup.style.display = "none";
     }
 }

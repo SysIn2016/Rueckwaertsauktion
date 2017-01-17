@@ -7,3 +7,7 @@ function einloggen(){
 function produktEinstellen(){
 	
 }
+
+function registrieren(){
+	
+}
