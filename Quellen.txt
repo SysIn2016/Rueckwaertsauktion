@@ -10,4 +10,5 @@ http://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2
 Java Auslesen eines Requests:
 http://www.java2s.com/Code/Java/JSP/JspformUsingButtons.htm
 
-
+Datei Upload:
+https://www.tutorialspoint.com/jsp/jsp_file_uploading.htm
