@@ -19,7 +19,7 @@ public class Anmeldung {
 	 */
 	public static boolean anmelden(String name, String passwort) {
 		boolean erfolgreich = false;
-		if (name.equals("Olaf Obst") && passwort.equals("Passwort1")) {
+		if ("Olaf Obst".equals(name) && "Passwort1".equals(passwort)) {
 			erfolgreich = true;
 		}
 		return erfolgreich;

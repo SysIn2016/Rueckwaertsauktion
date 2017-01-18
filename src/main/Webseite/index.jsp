@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="logik" class="Sysint2016.Rueckwaertsauktion.AuktionLogik"/>
-<jsp:useBean id="anmeldung" class="Sysint2016.Rueckwaertsauktion.Anmeldung"/>
+<jsp:useBean id="logik"
+	class="Sysint2016.Rueckwaertsauktion.AuktionLogik" />
+<jsp:useBean id="anmeldung"
+	class="Sysint2016.Rueckwaertsauktion.Anmeldung" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,14 +27,6 @@
 			<div id="Infotext">
 				Diese Webseite ist ein Projekt im Rahmen einer Lehrveranstaltung im
 				Studium.<br> Es werden keine echten Auktionen angeboten!!!<br>
-				<% 
-            if(request.getParameter("Name") != null && request.getParameter("Passwort") != null) {
-        %>
-            Angemeldet: <% out.print(anmeldung.anmelden(request.getParameter("Name"), request.getParameter("Passwort"))); %>
-            
-        <%
-            }
-        %>
 			</div>
 		</div>
 		<div id="mitte">
@@ -60,7 +54,14 @@
 
 
 	<!--  Popup Login -->
-	<div id="login" class="modal">
+	<div id="login" class="modal"
+		<%if (request.getParameter("Name") != null
+					&& request.getParameter("Passwort") != null) {
+				if (!anmeldung.anmelden(request.getParameter("Name"),
+						request.getParameter("Passwort"))) {
+					out.print("style=\"display: block\"");
+				}
+			}%>>
 		<!-- Modal content -->
 		<div class="modal-content">
 			<div class="modal-header">
@@ -69,11 +70,12 @@
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form1" METHOD="POST">
-					<INPUT TYPE="HIDDEN" NAME="Name"> 
-					<INPUT Type="Hidden" Name="Passwort">
-					<INPUT TYPE="text" placeholder="Nutzername" id="AnmeldenameText"> <br>
-					<INPUT TYPE="password" placeholder="Passwort" id="PasswortText"> <br>
-					<INPUT TYPE="button" VALUE="einloggen" ONCLICK="einloggen()">
+					<INPUT TYPE="HIDDEN" NAME="Name"> <INPUT Type="Hidden"
+						Name="Passwort"> <INPUT TYPE="text"
+						placeholder="Nutzername" id="AnmeldenameText"> <br> <INPUT
+						TYPE="password" placeholder="Passwort" id="PasswortText">
+					<br> <INPUT TYPE="button" VALUE="einloggen"
+						ONCLICK="einloggen()">
 				</FORM>
 			</div>
 			<div class="modal-footer">
@@ -81,7 +83,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!--  Popup Login -->
 	<div id="produktEinstellen" class="modal">
 		<!-- Modal content -->
@@ -92,10 +94,12 @@
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form2" METHOD="POST">
-					<INPUT TYPE="text" placeholder="Produktname" id="ProduktnameText"> <br>
-					<TEXTAREA rows="20" cols="200" id="ProduktbeschreibungText">Produktbeschreibung bitte eingeben. Bedenken Sie, je besser ihre Produktbeschreibung, desto wahrscheinlicher sind viele Gebote.</TEXTAREA> <br>
-					<INPUT TYPE="file" accept="image/*">
-					<INPUT TYPE="button" VALUE="Produkt einstellen" ONCLICK="produktEinstellen()">
+					<INPUT TYPE="text" placeholder="Produktname" id="ProduktnameText">
+					<br>
+					<TEXTAREA rows="20" cols="200" id="ProduktbeschreibungText">Produktbeschreibung bitte eingeben. Bedenken Sie, je besser ihre Produktbeschreibung, desto wahrscheinlicher sind viele Gebote.</TEXTAREA>
+					<br> <INPUT TYPE="file" accept="image/*"> <INPUT
+						TYPE="button" VALUE="Produkt einstellen"
+						ONCLICK="produktEinstellen()">
 				</FORM>
 			</div>
 			<div class="modal-footer">
@@ -103,7 +107,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!--  Popup Registrierung -->
 	<div id="userRegistrieren" class="modal">
 		<!-- Modal content -->
@@ -114,24 +118,29 @@
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form2" METHOD="POST">
-					<INPUT TYPE="text" placeholder="Vorname" id="UserVorname"> <br>
-					<INPUT TYPE="text" placeholder="Nachname" id="UserNachname"> <br>
-					<INPUT TYPE="text" placeholder="Username" id="UserUsername"> <br>
-					<INPUT TYPE="email" placeholder="E-Mailadresse" id="UserUsername"> <br>
-					<INPUT TYPE="password" placeholder="Passwort" id="UserPasswort"> <br>
-					<INPUT TYPE="password" placeholder="Passwort erneut eingeben" id="UserPasswortkontrolle"> <br>
+					<INPUT TYPE="text" placeholder="Vorname" id="UserVorname">
+					<br> <INPUT TYPE="text" placeholder="Nachname"
+						id="UserNachname"> <br> <INPUT TYPE="text"
+						placeholder="Username" id="UserUsername"> <br> <INPUT
+						TYPE="email" placeholder="E-Mailadresse" id="UserUsername">
+					<br> <INPUT TYPE="password" placeholder="Passwort"
+						id="UserPasswort"> <br> <INPUT TYPE="password"
+						placeholder="Passwort erneut eingeben" id="UserPasswortkontrolle">
+					<br>
 					<h3>Kontodaten</h3>
-					<INPUT TYPE="number" placeholder="Kontonummer" id="UserKontonummer"> <br>
-					<INPUT TYPE="text" placeholder="IBAN" id="UserIBAN"> <br>
-					<INPUT TYPE="text" placeholder="BIC" id="UserBIC"> <br>
-					<INPUT TYPE="button" VALUE="registrieren" ONCLICK="registrieren()">
+					<INPUT TYPE="number" placeholder="Kontonummer" id="UserKontonummer">
+					<br> <INPUT TYPE="text" placeholder="IBAN" id="UserIBAN">
+					<br> <INPUT TYPE="text" placeholder="BIC" id="UserBIC">
+					<br> <INPUT TYPE="button" VALUE="registrieren"
+						ONCLICK="registrieren()">
 				</FORM>
 			</div>
 			<div class="modal-footer">
-				<h3>Registrieren Sie sich. Damit Sie für Produkte bieten k&ouml;nnen und welche einstellen k&ouml;nnen.</h3>
+				<h3>Registrieren Sie sich. Damit Sie für Produkte bieten
+					k&ouml;nnen und welche einstellen k&ouml;nnen.</h3>
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="Popups.js"></script>
+	<script type="text/javascript" src="Popups.js"></script>
 </body>
 </html>
