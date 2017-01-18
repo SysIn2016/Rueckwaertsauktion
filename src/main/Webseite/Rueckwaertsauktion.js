@@ -4,6 +4,18 @@ function einloggen(){
     form1.submit();
 }
 
+function ausloggen(){
+	var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "Ausloggen");
+    hiddenField.setAttribute("value", "true");
+    form.appendChild(hiddenField);
+    document.body.appendChild(form);
+    form.submit();
+}
+
 function produktEinstellen(){
 	
 }

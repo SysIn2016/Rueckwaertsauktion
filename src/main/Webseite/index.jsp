@@ -14,19 +14,66 @@
 <script type="text/javascript" src="Rueckwaertsauktion.js"></script>
 </head>
 <body bgcolor="#D3FFCE">
+	<!--  Popup Login -->
+	<%if("true".equals(request.getParameter("Ausloggen"))){
+		session.invalidate();
+		session = request.getSession();
+	}
+		%>
+	<div id="login" class="modal"
+		<%if (request.getParameter("Name") != null
+					&& request.getParameter("Passwort") != null) {
+				if (!anmeldung.anmelden(request.getParameter("Name"),
+						request.getParameter("Passwort"))) {
+					out.print("style=\"display: block\"");
+				} else {
+					session.setAttribute("Name", request.getParameter("Name"));
+				}
+			}%>>
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" id="schliessenAnmelden">&times;</span>
+				<h2>Anmelden</h2>
+			</div>
+			<div class="modal-body">
+				<FORM NAME="form1" METHOD="POST">
+					<INPUT TYPE="HIDDEN" NAME="Name"> <INPUT Type="Hidden"
+						Name="Passwort"> <INPUT TYPE="text"
+						placeholder="Nutzername" id="AnmeldenameText"> <br> <INPUT
+						TYPE="password" placeholder="Passwort" id="PasswortText">
+					<br> <INPUT TYPE="button" VALUE="einloggen"
+						ONCLICK="einloggen()">
+				</FORM>
+			</div>
+			<div class="modal-footer">
+				<h3>Bitte loggen Sie sich ein, um an der Auktion teilzunehmen.</h3>
+			</div>
+		</div>
+	</div>
+
 	<div id="main">
 		<div id="oben">
 			<div id="Registrierung">
 				<button class="button" id="registrierenButton">
 					<span>Registrieren</span>
 				</button>
-				<button class="button" id="loginButton">
-					<span>Anmelden</span>
+				<button class="button" <%
+					if (session.getAttribute("Name") != null) {
+						out.print("id=\"logoutButton\" ONCLICK=\"ausloggen()\"><span>Abmelden</span");
+					} else {out.print("id=\"loginButton\"><span>Anmelden</span");}
+				%>>
 				</button>
 			</div>
 			<div id="Infotext">
 				Diese Webseite ist ein Projekt im Rahmen einer Lehrveranstaltung im
 				Studium.<br> Es werden keine echten Auktionen angeboten!!!<br>
+				<%
+					if (session.getAttribute("Name") != null) {
+						out.print("Sie sind angemeldet als: "
+								+ session.getAttribute("Name"));
+					}
+				%>
 			</div>
 		</div>
 		<div id="mitte">
@@ -48,38 +95,6 @@
 				<button class="button" id="geboteAbgebenButton">
 					<span>Gebote abgeben</span>
 				</button>
-			</div>
-		</div>
-	</div>
-
-
-	<!--  Popup Login -->
-	<div id="login" class="modal"
-		<%if (request.getParameter("Name") != null
-					&& request.getParameter("Passwort") != null) {
-				if (!anmeldung.anmelden(request.getParameter("Name"),
-						request.getParameter("Passwort"))) {
-					out.print("style=\"display: block\"");
-				}
-			}%>>
-		<!-- Modal content -->
-		<div class="modal-content">
-			<div class="modal-header">
-				<span class="close" id="schliessenAnmelden">&times;</span>
-				<h2>Anmelden</h2>
-			</div>
-			<div class="modal-body">
-				<FORM NAME="form1" METHOD="POST">
-					<INPUT TYPE="HIDDEN" NAME="Name"> <INPUT Type="Hidden"
-						Name="Passwort"> <INPUT TYPE="text"
-						placeholder="Nutzername" id="AnmeldenameText"> <br> <INPUT
-						TYPE="password" placeholder="Passwort" id="PasswortText">
-					<br> <INPUT TYPE="button" VALUE="einloggen"
-						ONCLICK="einloggen()">
-				</FORM>
-			</div>
-			<div class="modal-footer">
-				<h3>Bitte loggen Sie sich ein, um an der Auktion teilzunehmen.</h3>
 			</div>
 		</div>
 	</div>
