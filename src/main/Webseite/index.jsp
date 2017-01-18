@@ -45,8 +45,8 @@
 				<button class="button" id="produktEinstellenButton">
 					<span>Produkt einstellen</span>
 				</button>
-				<button class="button">
-					<span>Gebot abgeben</span>
+				<button class="button" id="geboteAbgebenButton">
+					<span>Gebote abgeben</span>
 				</button>
 			</div>
 		</div>
@@ -66,7 +66,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<span class="close" id="schliessenAnmelden">&times;</span>
-				<h2>Login</h2>
+				<h2>Anmelden</h2>
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form1" METHOD="POST">
@@ -84,23 +84,45 @@
 		</div>
 	</div>
 
-	<!--  Popup Login -->
+	<!--  Popup Produkt einstellen -->
 	<div id="produktEinstellen" class="modal">
 		<!-- Modal content -->
 		<div class="modal-content">
 			<div class="modal-header">
 				<span class="close" id="schliessenProduktEinstellen">&times;</span>
-				<h2>Login</h2>
+				<h2>Produkt einstellen</h2>
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form2" METHOD="POST">
 					<INPUT TYPE="text" placeholder="Produktname" id="ProduktnameText">
 					<br>
 					<TEXTAREA rows="20" cols="200" id="ProduktbeschreibungText">Produktbeschreibung bitte eingeben. Bedenken Sie, je besser ihre Produktbeschreibung, desto wahrscheinlicher sind viele Gebote.</TEXTAREA>
-					<br> <INPUT TYPE="file" accept="image/*"> <INPUT
+					<br> <INPUT TYPE="file" accept="image/*"> <br> <INPUT
 						TYPE="button" VALUE="Produkt einstellen"
 						ONCLICK="produktEinstellen()">
 				</FORM>
+			</div>
+			<div class="modal-footer">
+				<h3>Stellen Sie ihr Produkt ein.</h3>
+			</div>
+		</div>
+	</div>
+
+	<!--  Popup Gebote abgeben -->
+	<div id="geboteAbgeben" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" id="schliessenGeboteAbgeben">&times;</span>
+				<h2>Gebote abgeben</h2>
+			</div>
+			<div class="modal-body">
+				<FORM NAME="form3" METHOD="POST">
+					<INPUT TYPE="text" placeholder="Gebot" id="ProduktnameText">
+					<br> <INPUT TYPE="button" VALUE="bieten"
+						ONCLICK="gebotAbgeben()">
+				</FORM>
+				Anzahl der Gebote für das heutige Produkt:
 			</div>
 			<div class="modal-footer">
 				<h3>Stellen Sie ihr Produkt ein.</h3>
@@ -114,10 +136,10 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<span class="close" id="schliessenUserRegistrieren">&times;</span>
-				<h2>Login</h2>
+				<h2>Registrieren</h2>
 			</div>
 			<div class="modal-body">
-				<FORM NAME="form2" METHOD="POST">
+				<FORM NAME="form4" METHOD="POST">
 					<INPUT TYPE="text" placeholder="Vorname" id="UserVorname">
 					<br> <INPUT TYPE="text" placeholder="Nachname"
 						id="UserNachname"> <br> <INPUT TYPE="text"

@@ -11,3 +11,7 @@ function produktEinstellen(){
 function registrieren(){
 	
 }
+
+function gebotAbgeben(){
+	
+}

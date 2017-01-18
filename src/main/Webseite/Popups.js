@@ -53,6 +53,24 @@ userRegistrierenSchliessen.onclick = function() {
 }
 
 /*
+ * Bieten Popup
+ */
+
+var bietenPopup = document.getElementById('geboteAbgeben');
+var bietenButton = document.getElementById("geboteAbgebenButton");
+var bietenSchliessen = document.getElementById("schliessenGeboteAbgeben");
+
+//Funktion beim Klicken des Buttons
+bietenButton.onclick = function() {
+	bietenPopup.style.display = "block";
+}
+
+//Funktion beim Klicken des x im Popup
+bietenSchliessen.onclick = function() {
+	bietenPopup.style.display = "none";
+}
+
+/*
  * Popups schliessen beim Klick ausserhalb des Popups
  */
 window.onclick = function(event) {
@@ -64,5 +82,8 @@ window.onclick = function(event) {
     }
     if (event.target == userRegistrierenPopup) {
     	userRegistrierenPopup.style.display = "none";
+    }
+    if (event.target == userBietenPopup) {
+    	userBietenPopup.style.display = "none";
     }
 }

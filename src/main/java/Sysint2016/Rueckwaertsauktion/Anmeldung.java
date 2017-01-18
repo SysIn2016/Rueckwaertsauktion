@@ -17,7 +17,7 @@ public class Anmeldung {
 	 * @return true, Nutzerdaten sind gueltig <br>
 	 *         false, Nutzerdaten sind nicht gueltig
 	 */
-	public static boolean anmelden(String name, String passwort) {
+	public boolean anmelden(String name, String passwort) {
 		boolean erfolgreich = false;
 		if ("Olaf Obst".equals(name) && "Passwort1".equals(passwort)) {
 			erfolgreich = true;
