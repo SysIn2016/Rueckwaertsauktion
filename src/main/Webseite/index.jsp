@@ -20,6 +20,8 @@
 		session = request.getSession();
 	}
 		%>
+		<%if(request.getParameter("Produktname") != null && request.getParameter("Produktbild") != null && request.getParameter("Produktbeschreibung") != null) {
+		out.print("HAHA!");}%>
 	<div id="login" class="modal"
 		<%if (request.getParameter("Name") != null
 					&& request.getParameter("Passwort") != null) {
@@ -109,10 +111,13 @@
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form2" METHOD="POST">
+					<INPUT TYPE="HIDDEN" NAME="Produktname">
+					<INPUT TYPE="HIDDEN" NAME="Produktbild">
+					<INPUT TYPE="HIDDEN" NAME="Produktbeschreibung">
 					<INPUT TYPE="text" placeholder="Produktname" id="ProduktnameText">
 					<br>
-					<TEXTAREA rows="20" cols="200" id="ProduktbeschreibungText">Produktbeschreibung bitte eingeben. Bedenken Sie, je besser ihre Produktbeschreibung, desto wahrscheinlicher sind viele Gebote.</TEXTAREA>
-					<br> <INPUT TYPE="file" accept="image/*"> <br> <INPUT
+					<TEXTAREA rows="20" cols="200" id="ProduktBeschreibungText">Produktbeschreibung bitte eingeben. Bedenken Sie, je besser ihre Produktbeschreibung, desto wahrscheinlicher sind viele Gebote.</TEXTAREA>
+					<br> <INPUT TYPE="file" accept="image/*" id="ProduktBild"> <br> <INPUT
 						TYPE="button" VALUE="Produkt einstellen"
 						ONCLICK="produktEinstellen()">
 				</FORM>
