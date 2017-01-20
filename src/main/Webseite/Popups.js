@@ -1,15 +1,20 @@
 /*
  * Login Popup
  */
+function block(action, obj){
+	obj.style.display = action;
+}
+
 try {
 	var einloggenPopup = document.getElementById('login');
 	var einlogButton = document.getElementById("loginButton");
 	var x = document.getElementById("schliessenAnmelden");
 
 	// Funktion beim Klicken des Buttons
-	einlogButton.onclick = function() {
+	einlogButton.addEventListener('click', function (){block("block", einloggenPopup)}, false);
+	/*einlogButton.onclick = function() {
 		einloggenPopup.style.display = "block";
-	}
+	}*/
 
 	// Funktion beim Klicken des x im Popup
 	x.onclick = function() {

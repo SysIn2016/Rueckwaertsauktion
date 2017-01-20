@@ -24,7 +24,21 @@ function produktEinstellen(){
 }
 
 function registrieren(){
-	
+	var p1 = document.getElementById("UserPasswort").value;
+	var p2 = document.getElementById("UserPasswortkontrolle").value;
+	if (p1.length >= 8 && p1 === p2){
+		document.form4.UVorname.value = document.getElementById("UserVorname").value;
+		document.form4.UNachname.value = document.getElementById("UserNachname").value;
+		document.form4.UUsername.value = document.getElementById("UserUsername").value;
+		document.form4.UEMail.value = document.getElementById("UserEMail").value;
+		document.form4.UPasswort.value = p1;
+		document.form4.UKontonummer.value = document.getElementById("UserKontonummer").value;
+		document.form4.UIBAN.value = document.getElementById("UserIBAN").value;
+		document.form4.UBIC.value = document.getElementById("UserBIC").value;
+		form4.submit();
+	} else {
+		alert("Das Passwort muss 2 mal gleich eingegeben werden und mindestens 8 Zeichen lang sein.");
+	}
 }
 
 function gebotAbgeben(){

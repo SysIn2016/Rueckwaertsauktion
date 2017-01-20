@@ -3,7 +3,7 @@
 <jsp:useBean id="logik"
 	class="Sysint2016.Rueckwaertsauktion.AuktionLogik" />
 <jsp:useBean id="anmeldung"
-	class="Sysint2016.Rueckwaertsauktion.Anmeldung" />
+	class="Sysint2016.Rueckwaertsauktion.Nutzerverwaltung" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -160,11 +160,19 @@
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form4" METHOD="POST">
+				<INPUT TYPE="HIDDEN" NAME="UVorname">
+				<INPUT TYPE="HIDDEN" NAME="UNachname">
+				<INPUT TYPE="HIDDEN" NAME="UUsername">
+				<INPUT TYPE="HIDDEN" NAME="UPasswort">
+				<INPUT TYPE="HIDDEN" NAME="UEMail">
+				<INPUT TYPE="HIDDEN" NAME="UKontonummer">
+				<INPUT TYPE="HIDDEN" NAME="UBIC">
+				<INPUT TYPE="HIDDEN" NAME="UIBAN">
 					<INPUT TYPE="text" placeholder="Vorname" id="UserVorname">
 					<br> <INPUT TYPE="text" placeholder="Nachname"
 						id="UserNachname"> <br> <INPUT TYPE="text"
 						placeholder="Username" id="UserUsername"> <br> <INPUT
-						TYPE="email" placeholder="E-Mailadresse" id="UserUsername">
+						TYPE="email" placeholder="E-Mailadresse" id="UserEMail">
 					<br> <INPUT TYPE="password" placeholder="Passwort"
 						id="UserPasswort"> <br> <INPUT TYPE="password"
 						placeholder="Passwort erneut eingeben" id="UserPasswortkontrolle">
