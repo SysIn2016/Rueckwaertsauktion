@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="logik"
 	class="Sysint2016.Rueckwaertsauktion.AuktionLogik" />
-<jsp:useBean id="anmeldung"
+<jsp:useBean id="nutzerverwaltung"
 	class="Sysint2016.Rueckwaertsauktion.Nutzerverwaltung" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,17 +15,39 @@
 </head>
 <body bgcolor="#D3FFCE">
 	<!--  Popup Login -->
-	<%if("true".equals(request.getParameter("Ausloggen"))){
-		session.invalidate();
-		session = request.getSession();
-	}
-		%>
-		<%if(request.getParameter("Produktname") != null && request.getParameter("Produktbild") != null && request.getParameter("Produktbeschreibung") != null) {
-		out.print("HAHA!");}%>
+	<%
+		if ("true".equals(request.getParameter("Ausloggen"))) {
+			session.invalidate();
+			session = request.getSession();
+		}
+		;
+		/*
+		 * Ueberlegung lieber Typ des requests abfragen!
+		 */
+		if (request.getParameter("UVorname") != null) {
+			if(nutzerverwaltung.registrieren(request.getParameter("UVorname"),
+					request.getParameter("UNachname"),
+					request.getParameter("UUsername"),
+					request.getParameter("UEMail"),
+					request.getParameter("UPasswort"),
+					request.getParameter("UKontonummer"),
+					request.getParameter("UIBAN"),
+					request.getParameter("UBIC"))){
+				nutzerverwaltung.sendeRegistrationsmail(request.getParameter("UEMail"));
+			}
+		}
+	%>
+	<%
+		if (request.getParameter("Produktname") != null
+				&& request.getParameter("Produktbild") != null
+				&& request.getParameter("Produktbeschreibung") != null) {
+			out.print("HAHA!");
+		}
+	%>
 	<div id="login" class="modal"
 		<%if (request.getParameter("Name") != null
 					&& request.getParameter("Passwort") != null) {
-				if (!anmeldung.anmelden(request.getParameter("Name"),
+				if (!nutzerverwaltung.anmelden(request.getParameter("Name"),
 						request.getParameter("Passwort"))) {
 					out.print("style=\"display: block\"");
 				} else {
@@ -60,11 +82,12 @@
 				<button class="button" id="registrierenButton">
 					<span>Registrieren</span>
 				</button>
-				<button class="button" <%
-					if (session.getAttribute("Name") != null) {
-						out.print("id=\"logoutButton\" ONCLICK=\"ausloggen()\"><span>Abmelden</span");
-					} else {out.print("id=\"loginButton\"><span>Anmelden</span");}
-				%>>
+				<button class="button"
+					<%if (session.getAttribute("Name") != null) {
+				out.print("id=\"logoutButton\" ONCLICK=\"ausloggen()\"><span>Abmelden</span");
+			} else {
+				out.print("id=\"loginButton\"><span>Anmelden</span");
+			}%>>
 				</button>
 			</div>
 			<div id="Infotext">
@@ -111,14 +134,13 @@
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form2" METHOD="POST">
-					<INPUT TYPE="HIDDEN" NAME="Produktname">
-					<INPUT TYPE="HIDDEN" NAME="Produktbild">
-					<INPUT TYPE="HIDDEN" NAME="Produktbeschreibung">
-					<INPUT TYPE="text" placeholder="Produktname" id="ProduktnameText">
-					<br>
+					<INPUT TYPE="HIDDEN" NAME="Produktname"> <INPUT
+						TYPE="HIDDEN" NAME="Produktbild"> <INPUT TYPE="HIDDEN"
+						NAME="Produktbeschreibung"> <INPUT TYPE="text"
+						placeholder="Produktname" id="ProduktnameText"> <br>
 					<TEXTAREA rows="20" cols="200" id="ProduktBeschreibungText">Produktbeschreibung bitte eingeben. Bedenken Sie, je besser ihre Produktbeschreibung, desto wahrscheinlicher sind viele Gebote.</TEXTAREA>
-					<br> <INPUT TYPE="file" accept="image/*" id="ProduktBild"> <br> <INPUT
-						TYPE="button" VALUE="Produkt einstellen"
+					<br> <INPUT TYPE="file" accept="image/*" id="ProduktBild">
+					<br> <INPUT TYPE="button" VALUE="Produkt einstellen"
 						ONCLICK="produktEinstellen()">
 				</FORM>
 			</div>
@@ -160,19 +182,16 @@
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form4" METHOD="POST">
-				<INPUT TYPE="HIDDEN" NAME="UVorname">
-				<INPUT TYPE="HIDDEN" NAME="UNachname">
-				<INPUT TYPE="HIDDEN" NAME="UUsername">
-				<INPUT TYPE="HIDDEN" NAME="UPasswort">
-				<INPUT TYPE="HIDDEN" NAME="UEMail">
-				<INPUT TYPE="HIDDEN" NAME="UKontonummer">
-				<INPUT TYPE="HIDDEN" NAME="UBIC">
-				<INPUT TYPE="HIDDEN" NAME="UIBAN">
-					<INPUT TYPE="text" placeholder="Vorname" id="UserVorname">
-					<br> <INPUT TYPE="text" placeholder="Nachname"
-						id="UserNachname"> <br> <INPUT TYPE="text"
-						placeholder="Username" id="UserUsername"> <br> <INPUT
-						TYPE="email" placeholder="E-Mailadresse" id="UserEMail">
+					<INPUT TYPE="HIDDEN" NAME="UVorname"> <INPUT TYPE="HIDDEN"
+						NAME="UNachname"> <INPUT TYPE="HIDDEN" NAME="UUsername">
+					<INPUT TYPE="HIDDEN" NAME="UPasswort"> <INPUT TYPE="HIDDEN"
+						NAME="UEMail"> <INPUT TYPE="HIDDEN" NAME="UKontonummer">
+					<INPUT TYPE="HIDDEN" NAME="UBIC"> <INPUT TYPE="HIDDEN"
+						NAME="UIBAN"> <INPUT TYPE="text" placeholder="Vorname"
+						id="UserVorname"> <br> <INPUT TYPE="text"
+						placeholder="Nachname" id="UserNachname"> <br> <INPUT
+						TYPE="text" placeholder="Username" id="UserUsername"> <br>
+					<INPUT TYPE="email" placeholder="E-Mailadresse" id="UserEMail">
 					<br> <INPUT TYPE="password" placeholder="Passwort"
 						id="UserPasswort"> <br> <INPUT TYPE="password"
 						placeholder="Passwort erneut eingeben" id="UserPasswortkontrolle">

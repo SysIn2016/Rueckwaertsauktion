@@ -51,4 +51,14 @@ public class Nutzerverwaltung {
 		 */
 		return ergebnis;
 	}
+
+	/**
+	 * Methode zum Senden einer E-Mail zur bestaetigung der Registrierung.
+	 * 
+	 * @param emailadresse
+	 *            , E-Mailadresse des neuen Nutzers
+	 */
+	public void sendeRegistrationsmail(String emailadresse) {
+		System.out.println(emailadresse);
+	}
 }
