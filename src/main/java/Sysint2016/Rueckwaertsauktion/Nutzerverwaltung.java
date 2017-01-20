@@ -58,7 +58,7 @@ public class Nutzerverwaltung {
 	 * @param emailadresse
 	 *            , E-Mailadresse des neuen Nutzers
 	 */
-	public void sendeRegistrationsmail(String emailadresse) {
+	public void sendeRegistrationsmail(String emailadresse, String benutzername) {
 		System.out.println(emailadresse);
 	}
 }

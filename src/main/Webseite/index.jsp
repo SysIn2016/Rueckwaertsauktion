@@ -25,15 +25,18 @@
 		 * Ueberlegung lieber Typ des requests abfragen!
 		 */
 		if (request.getParameter("UVorname") != null) {
-			if(nutzerverwaltung.registrieren(request.getParameter("UVorname"),
+			if (nutzerverwaltung.registrieren(
+					request.getParameter("UVorname"),
 					request.getParameter("UNachname"),
 					request.getParameter("UUsername"),
 					request.getParameter("UEMail"),
 					request.getParameter("UPasswort"),
 					request.getParameter("UKontonummer"),
 					request.getParameter("UIBAN"),
-					request.getParameter("UBIC"))){
-				nutzerverwaltung.sendeRegistrationsmail(request.getParameter("UEMail"));
+					request.getParameter("UBIC"))) {
+				nutzerverwaltung.sendeRegistrationsmail(
+						request.getParameter("UEMail"),
+						request.getParameter("UUsername"));
 			}
 		}
 	%>
