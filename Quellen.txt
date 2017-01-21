@@ -12,3 +12,6 @@ http://www.java2s.com/Code/Java/JSP/JspformUsingButtons.htm
 
 Datei Upload:
 https://www.tutorialspoint.com/jsp/jsp_file_uploading.htm
+
+E-Mail versenden:
+http://www.torsten-horn.de/techdocs/java-smtp.htm
