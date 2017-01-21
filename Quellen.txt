@@ -15,3 +15,6 @@ https://www.tutorialspoint.com/jsp/jsp_file_uploading.htm
 
 E-Mail versenden:
 http://www.torsten-horn.de/techdocs/java-smtp.htm
+
+LDAP Anmeldung:
+http://stackoverflow.com/questions/2522770/how-to-check-user-password-in-ldap-whith-java-with-given-ldapcontext
