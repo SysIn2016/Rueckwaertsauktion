@@ -2,11 +2,8 @@ package Sysint2016.Rueckwaertsauktion;
 
 import java.util.Hashtable;
 import javax.naming.Context;
-import javax.naming.NamingEnumeration;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
-import javax.naming.directory.SearchControls;
-import javax.naming.directory.SearchResult;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 
