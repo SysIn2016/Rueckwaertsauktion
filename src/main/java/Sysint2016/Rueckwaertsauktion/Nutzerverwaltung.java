@@ -141,11 +141,11 @@ public class Nutzerverwaltung {
 	 * @param emailadresse
 	 *            , E-Mailadresse des neuen Nutzers
 	 */
-	public void sendeRegistrationsmail(String emailadresse, String benutzername) throws IOException {
+	public void sendeRegistrationsmail(String benutzername) throws IOException {
 		
 		// Welche Adresse?
 		String mailFrom = "der_kakerlak@web.de";
-		String mailTo = emailadresse;
+		String mailTo = "der_kakerlak@web.de";
 		String mailBody = "Hallo " + benutzername + "!\n\n Herzlich willkommen bei der SysIn Rueckwaertsauktion!\n\n Viel Spass beim Bieten.\n\nDiese E-Mail wurde mit Amazon SES versendet.";
 		String mailSubject = "Registrierung bei SysIn-Rueckwaertsauktion";
 		
