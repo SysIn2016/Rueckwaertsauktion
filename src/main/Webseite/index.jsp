@@ -25,33 +25,25 @@
 		 * Ueberlegung lieber Typ des requests abfragen!
 		 */
 		if (request.getParameter("UVorname") != null) {
-			if (nutzerverwaltung.registrieren(
-					request.getParameter("UVorname"),
-					request.getParameter("UNachname"),
-					request.getParameter("UUsername"),
-					request.getParameter("UEMail"),
-					request.getParameter("UPasswort"),
-					request.getParameter("UKontonummer"),
-					request.getParameter("UIBAN"),
-					request.getParameter("UBIC"))) {
+			if (nutzerverwaltung.registrieren(request.getParameter("UVorname"), request.getParameter("UNachname"),
+					request.getParameter("UUsername"), request.getParameter("UEMail"),
+					request.getParameter("UPasswort"), request.getParameter("UKontonummer"),
+					request.getParameter("UIBAN"), request.getParameter("UBIC"))) {
 				nutzerverwaltung.sendeRegistrationsmail(
-						request.getParameter("UEMail"),
+
 						request.getParameter("UUsername"));
 			}
 		}
 	%>
 	<%
-		if (request.getParameter("Produktname") != null
-				&& request.getParameter("Produktbild") != null
+		if (request.getParameter("Produktname") != null && request.getParameter("Produktbild") != null
 				&& request.getParameter("Produktbeschreibung") != null) {
 			out.print("HAHA!");
 		}
 	%>
 	<div id="login" class="modal"
-		<%if (request.getParameter("Name") != null
-					&& request.getParameter("Passwort") != null) {
-				if (!nutzerverwaltung.anmelden(request.getParameter("Name"),
-						request.getParameter("Passwort"))) {
+		<%if (request.getParameter("Name") != null && request.getParameter("Passwort") != null) {
+				if (!nutzerverwaltung.anmelden(request.getParameter("Name"), request.getParameter("Passwort"))) {
 					out.print("style=\"display: block\"");
 				} else {
 					session.setAttribute("Name", request.getParameter("Name"));
@@ -98,8 +90,7 @@
 				Studium.<br> Es werden keine echten Auktionen angeboten!!!<br>
 				<%
 					if (session.getAttribute("Name") != null) {
-						out.print("Sie sind angemeldet als: "
-								+ session.getAttribute("Name"));
+						out.print("Sie sind angemeldet als: " + session.getAttribute("Name"));
 					}
 				%>
 			</div>
