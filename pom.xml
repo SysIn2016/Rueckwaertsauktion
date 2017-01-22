@@ -52,6 +52,11 @@
         <artifactId>tomcat-jsp-api</artifactId>
         <version>${tomcat.version}</version>
     </dependency>
+    <dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-java-sdk-ses</artifactId>
+    <version>1.11.83</version>
+</dependency>
   </dependencies>
   <build>
     <finalName>Rueckwaertsauktion</finalName>
