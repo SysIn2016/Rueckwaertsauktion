@@ -17,12 +17,17 @@ function ausloggen() {
 }
 
 function produktEinstellen() {
-	document.form2.Produktname.value = document
-			.getElementById("ProduktnameText").value;
-	document.form2.Produktbild.value = document.getElementById("ProduktBild").value;
-	document.form2.Produktbeschreibung.value = document
-			.getElementById("ProduktBeschreibungText").value;
+	var pname = document.getElementById("ProduktnameText").value;
+	var pbeschreibung = document.getElementById("ProduktBeschreibungText").value;
+	var pbild = document.getElementById("ProduktBild").value;
+	if(pname.length > 0 && pbeschreibung.length > 0 && pbild.length > 0){
+	document.form2.Produktname.value = pname;
+	document.form2.Produktbild.value = pbild;
+	document.form2.Produktbeschreibung.value = pbeschreibung;
 	form2.submit();
+	} else{
+	alert("Bitte alle Felder ausfüllen.");
+	}
 }
 
 function registrieren() {
