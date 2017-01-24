@@ -127,13 +127,13 @@
 				<h2>Produkt einstellen</h2>
 			</div>
 			<div class="modal-body">
-				<FORM NAME="form2" METHOD="POST">
+				<FORM NAME="form2" METHOD="POST" action="BildUpload.jsp" enctype="multipart/form-data">
 					<INPUT TYPE="HIDDEN" NAME="Produktname"> <INPUT
 						TYPE="HIDDEN" NAME="Produktbild"> <INPUT TYPE="HIDDEN"
 						NAME="Produktbeschreibung"> <INPUT TYPE="text"
 						placeholder="Produktname" id="ProduktnameText"> <br>
 					<TEXTAREA rows="20" cols="200" id="ProduktBeschreibungText">Produktbeschreibung bitte eingeben. Bedenken Sie, je besser ihre Produktbeschreibung, desto wahrscheinlicher sind viele Gebote.</TEXTAREA>
-					<br> <INPUT TYPE="file" accept="image/*" id="ProduktBild">
+					<br> <INPUT TYPE="file" name="produktBild" accept="image/*" id="ProduktBild" size="50">
 					<br> <INPUT TYPE="button" VALUE="Produkt einstellen"
 						ONCLICK="produktEinstellen()">
 				</FORM>
