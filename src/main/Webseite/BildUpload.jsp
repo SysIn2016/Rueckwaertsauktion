@@ -52,6 +52,7 @@
          String fileName ="";
          String prName ="";
          String prBeschreibung ="";
+         String link = "";
          while ( i.hasNext () ) 
          {
             FileItem fi = (FileItem)i.next();
@@ -69,9 +70,8 @@
             }else{
             file = new File( filePath + 
             fileName.substring(fileName.lastIndexOf("\\")+1)) ;
-            }
-            fi.write( file ) ;
-            Sysint2016.Rueckwaertsauktion.S3Upload.bildSpeichern(fileName, file);
+            } 
+            link = Sysint2016.Rueckwaertsauktion.S3Upload.bildSpeichern(fileName, fi.getInputStream(), sizeInBytes);
             } else {
             	String fieldName = fi.getFieldName();
             	String fieldValue = fi.getString();
@@ -85,8 +85,7 @@
          }
          out.println(prName + "<br>");
          out.println(prBeschreibung + "<br>");
-         out.println("<img alt=\"Produktbild?\" src=\"" + 
-                 fileName+"\"> " + "<br>");
+         out.println("<img alt=\"Produktbild?\" src=\""+ link +"\"> " + "<br>");
          out.println("<a href=\"index.jsp\" title=\"Best&auml;tigen\">okay</a>");
          logik.erzeugeProdukt(prName, prBeschreibung, (String)session.getAttribute("Name"), fileName);
          out.println("</body>");
