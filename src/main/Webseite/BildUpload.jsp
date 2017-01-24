@@ -14,6 +14,8 @@
 <%@ page import="org.apache.commons.fileupload.disk.*" %>
 <%@ page import="org.apache.commons.fileupload.servlet.*" %>
 <%@ page import="org.apache.commons.io.output.*" %>
+<jsp:useBean id="logik"
+	class="Sysint2016.Rueckwaertsauktion.AuktionLogik" />
 
 <%
    File file ;
@@ -84,6 +86,8 @@
          out.println(prBeschreibung + "<br>");
          out.println("<img alt=\"Produktbild?\" src=\"" + 
                  fileName+"\"> " + "<br>");
+         out.println("<a href=\"index.jsp\" title=\"Best&auml;tigen\">okay</a>");
+         logik.erzeugeProdukt(prName, prBeschreibung, (String)session.getAttribute("Name"), fileName);
          out.println("</body>");
          out.println("</html>");
       }catch(Exception ex) {

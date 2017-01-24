@@ -13,13 +13,13 @@ public class Produkt {
 	private String produktname;
 	private String produktbeschreibung;
 	/*
-	 * Die KundenID des Einstellers des Produkts
+	 * Die KundenID des Einstellers des Produkts. Die ID entspricht dem Usernamen.
 	 */
-	private int einstellerID;
+	private String einstellerID;
 	/*
-	 * ID des Bildes zum Produkt.
+	 * ID des Bildes zum Produkt. Die ID entspricht dem Pfad des Bildes.
 	 */
-	private int bildID;
+	private String bildID;
 
 	static {
 		naechsteID = 0;
@@ -34,7 +34,7 @@ public class Produkt {
 	 * @param bildID
 	 */
 	public Produkt(String produktname, String produktbeschreibung,
-			int einstellerID, int bildID) {
+			String einstellerID, String bildID) {
 		setProduktname(produktname);
 		setProduktbeschreibung(produktbeschreibung);
 		setEinstellerID(einstellerID);
@@ -76,19 +76,19 @@ public class Produkt {
 		this.produktbeschreibung = produktbeschreibung;
 	}
 
-	public int getEinstellerID() {
+	public String getEinstellerID() {
 		return einstellerID;
 	}
 
-	public void setEinstellerID(int einstellerID) {
+	public void setEinstellerID(String einstellerID) {
 		this.einstellerID = einstellerID;
 	}
 
-	public int getBildID() {
+	public String getBildID() {
 		return bildID;
 	}
 
-	public void setBildID(int bildID) {
+	public void setBildID(String bildID) {
 		this.bildID = bildID;
 	}
 

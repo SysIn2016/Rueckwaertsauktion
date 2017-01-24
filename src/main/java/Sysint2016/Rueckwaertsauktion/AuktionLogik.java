@@ -72,8 +72,8 @@ public class AuktionLogik {
 	 * @param einstellerID
 	 * @param bildID
 	 */
-	public static void erzeugeProdukt(String produktname,
-			String produktbeschreibung, int einstellerID, int bildID) {
+	public void erzeugeProdukt(String produktname,
+			String produktbeschreibung, String einstellerID, String bildID) {
 		produktverwaltung.speicherProdukt(new Produkt(produktname,
 				produktbeschreibung, einstellerID, bildID));
 	}
