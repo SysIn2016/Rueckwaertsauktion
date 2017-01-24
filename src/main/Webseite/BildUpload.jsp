@@ -71,6 +71,7 @@
             fileName.substring(fileName.lastIndexOf("\\")+1)) ;
             }
             fi.write( file ) ;
+            Sysint2016.Rueckwaertsauktion.S3Upload.bildSpeichern(fileName, file);
             } else {
             	String fieldName = fi.getFieldName();
             	String fieldValue = fi.getString();
