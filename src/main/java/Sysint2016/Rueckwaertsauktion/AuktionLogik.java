@@ -99,4 +99,8 @@ public class AuktionLogik {
 				+ (datum.getYear() + 1900);
 		return auktionsliste.get(heute).neuesGebot(nutzername, gebot);
 	}
+
+	public static ConcurrentHashMap<String, Auktion> getAuktionsliste() {
+		return auktionsliste;
+	}
 }
