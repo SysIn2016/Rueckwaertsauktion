@@ -38,7 +38,7 @@ public class AuktionLogik {
 	 *         false, das Produkt konnte nicht eingefuegt werden, da bereits ein
 	 *         anderes Produkt an dem Tag versteigert werden soll
 	 */
-	public static boolean setProdukt(String datum, int produktID) {
+	public static boolean setzeAuktion(String datum, int produktID) {
 		boolean eingefuegt = false;
 		if (!auktionsliste.containsKey(datum)) {
 			auktionsliste.put(datum, new Auktion(produktID));
@@ -75,8 +75,22 @@ public class AuktionLogik {
 	 */
 	public void erzeugeProdukt(String produktname, String produktbeschreibung,
 			String einstellerID, String bildID) {
-		produktverwaltung.speicherProdukt(new Produkt(produktname,
-				produktbeschreibung, einstellerID, bildID));
+		Produkt produkt = new Produkt(produktname, produktbeschreibung,
+				einstellerID, bildID);
+		produktverwaltung.speicherProdukt(produkt);
+
+		/*
+		 * Nur Übergangslösung
+		 */
+		Date datum = new Date();
+		String heute = datum.getDate() + "." + (datum.getMonth() + 1) + "."
+				+ (datum.getYear() + 1900);
+		while (auktionsliste.containsKey(heute)) {
+			datum.setDate(datum.getDate() + 1);
+			heute = datum.getDate() + "." + (datum.getMonth() + 1) + "."
+					+ (datum.getYear() + 1900);
+		}
+		auktionsliste.put(heute, new Auktion(produkt.getProduktID()));
 	}
 
 	public int gebeGebotAb(String nutzername, float gebot) {
