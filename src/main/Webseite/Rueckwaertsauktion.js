@@ -17,7 +17,11 @@ function ausloggen() {
 }
 
 function produktEinstellen() {
-	
+	document.form2.Produktname.value = document
+			.getElementById("ProduktnameText").value;
+	document.form2.Produktbild.value = document.getElementById("ProduktBild").value;
+	document.form2.Produktbeschreibung.value = document
+			.getElementById("ProduktBeschreibungText").value;
 	form2.submit();
 }
 
@@ -33,9 +37,9 @@ function registrieren() {
 	var iban = document.getElementById("UserIBAN").value;
 	var bic = document.getElementById("UserBIC").value;
 
-	//1. Passwort pruefen
+	// 1. Passwort pruefen
 	if (p1.length >= 8 && p1 === p2) {
-		//2. Pruefen ob zumindest alles gefuellt ist
+		// 2. Pruefen ob zumindest alles gefuellt ist
 		if (vorname.length > 0 && nachname.length > 0 && username.length > 0
 				&& email.length > 0 && kontonummer.length > 0
 				&& iban.length > 0 && bic.length > 0) {
@@ -48,7 +52,9 @@ function registrieren() {
 			document.form4.UIBAN.value = iban;
 			document.form4.UBIC.value = bic;
 			form4.submit();
-		} else {alert("Das Formular muss komplett ausgefüllt sein!");}
+		} else {
+			alert("Das Formular muss komplett ausgefüllt sein!");
+		}
 	} else {
 		alert("Das Passwort muss 2 mal gleich eingegeben werden und mindestens 8 Zeichen lang sein.");
 	}
