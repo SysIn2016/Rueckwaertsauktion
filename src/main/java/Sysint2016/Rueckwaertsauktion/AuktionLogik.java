@@ -1,5 +1,6 @@
 package Sysint2016.Rueckwaertsauktion;
 
+import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -16,12 +17,12 @@ public class AuktionLogik {
 	 * HashMap, die die Produkte enthaelt, die Versteigert werden sollen. <br>
 	 * Der Schluessel ist das Datum an dem das Produkt versteigert werden soll.
 	 */
-	private static ConcurrentHashMap<String, Integer> auktionsliste;
+	private static ConcurrentHashMap<String, Auktion> auktionsliste;
 
 	private static Produktverwaltung produktverwaltung;
 
 	static {
-		auktionsliste = new ConcurrentHashMap<String, Integer>();
+		auktionsliste = new ConcurrentHashMap<String, Auktion>();
 		produktverwaltung = new Produktverwaltung();
 	}
 
@@ -40,7 +41,7 @@ public class AuktionLogik {
 	public static boolean setProdukt(String datum, int produktID) {
 		boolean eingefuegt = false;
 		if (!auktionsliste.containsKey(datum)) {
-			auktionsliste.put(datum, produktID);
+			auktionsliste.put(datum, new Auktion(produktID));
 			eingefuegt = true;
 		}
 		return eingefuegt;
@@ -59,7 +60,7 @@ public class AuktionLogik {
 	public static int getProduktID(String datum) {
 		int produktID = -1;
 		if (auktionsliste.containsKey(datum)) {
-			produktID = auktionsliste.get(datum);
+			produktID = auktionsliste.get(datum).getProduktID();
 		}
 		return produktID;
 	}
@@ -72,9 +73,16 @@ public class AuktionLogik {
 	 * @param einstellerID
 	 * @param bildID
 	 */
-	public void erzeugeProdukt(String produktname,
-			String produktbeschreibung, String einstellerID, String bildID) {
+	public void erzeugeProdukt(String produktname, String produktbeschreibung,
+			String einstellerID, String bildID) {
 		produktverwaltung.speicherProdukt(new Produkt(produktname,
 				produktbeschreibung, einstellerID, bildID));
+	}
+
+	public int gebeGebotAb(String nutzername, float gebot) {
+		Date datum = new Date();
+		String heute = datum.getDate() + "." + (datum.getMonth() + 1) + "."
+				+ (datum.getYear() + 1900);
+		return auktionsliste.get(heute).neuesGebot(nutzername, gebot);
 	}
 }
