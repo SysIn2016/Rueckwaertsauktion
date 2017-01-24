@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -13,7 +14,9 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
 
 public class S3Upload {
 //	String uploadFileName;
@@ -33,6 +36,7 @@ public class S3Upload {
 		try {
 		BufferedReader br = new BufferedReader(new FileReader(credentials1));
 			line = br.readLine();
+			br.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,4 +70,30 @@ public class S3Upload {
             System.out.println("Error Message: " + ace.getMessage());
         }
     }
+	public static void bildSpeichern(String keyName ) {
+		File credentials1 = new File("src/main/Webseite/Credentials.txt");
+		String line="";
+		try {
+		BufferedReader br = new BufferedReader(new FileReader(credentials1));
+			line = br.readLine();
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//AmazonS3 s3Client = new AmazonS3Client(new ProfileCredentialsProvider());        
+		AWSCredentials credentials = new BasicAWSCredentials(line.split(",")[0], line.split(",")[1]);
+		 AmazonS3 s3client = new AmazonS3Client(credentials);
+		S3Object object = s3client.getObject(
+		                  new GetObjectRequest(bucketName, keyName));
+		InputStream objectData = object.getObjectContent();
+		// Process the objectData stream.
+		try {
+			objectData.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }
