@@ -87,7 +87,7 @@
          out.println(prBeschreibung + "<br>");
          out.println("<img alt=\"Produktbild?\" src=\""+ link +"\"> " + "<br>");
          out.println("<a href=\"index.jsp\" title=\"Best&auml;tigen\">okay</a>");
-         logik.erzeugeProdukt(prName, prBeschreibung, (String)session.getAttribute("Name"), fileName);
+         logik.erzeugeProdukt(prName, prBeschreibung, (String)session.getAttribute("Name"), link);
          out.println("</body>");
          out.println("</html>");
       }catch(Exception ex) {
