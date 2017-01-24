@@ -25,19 +25,26 @@
 		 * Ueberlegung lieber Typ des requests abfragen!
 		 */
 		if (request.getParameter("UVorname") != null) {
-			if (nutzerverwaltung.registrieren(request.getParameter("UVorname"), request.getParameter("UNachname"),
-					request.getParameter("UUsername"), request.getParameter("UEMail"),
-					request.getParameter("UPasswort"), request.getParameter("UKontonummer"),
-					request.getParameter("UIBAN"), request.getParameter("UBIC"))) {
+			if (nutzerverwaltung.registrieren(
+					request.getParameter("UVorname"),
+					request.getParameter("UNachname"),
+					request.getParameter("UUsername"),
+					request.getParameter("UEMail"),
+					request.getParameter("UPasswort"),
+					request.getParameter("UKontonummer"),
+					request.getParameter("UIBAN"),
+					request.getParameter("UBIC"))) {
 				nutzerverwaltung.sendeRegistrationsmail(
 
-						request.getParameter("UUsername"));
+				request.getParameter("UUsername"));
 			}
 		}
 	%>
 	<div id="login" class="modal"
-		<%if (request.getParameter("Name") != null && request.getParameter("Passwort") != null) {
-				if (!nutzerverwaltung.anmelden(request.getParameter("Name"), request.getParameter("Passwort"))) {
+		<%if (request.getParameter("Name") != null
+					&& request.getParameter("Passwort") != null) {
+				if (!nutzerverwaltung.anmelden(request.getParameter("Name"),
+						request.getParameter("Passwort"))) {
 					out.print("style=\"display: block\"");
 				} else {
 					session.setAttribute("Name", request.getParameter("Name"));
@@ -84,7 +91,8 @@
 				Studium.<br> Es werden keine echten Auktionen angeboten!!!<br>
 				<%
 					if (session.getAttribute("Name") != null) {
-						out.print("Sie sind angemeldet als: " + session.getAttribute("Name"));
+						out.print("Sie sind angemeldet als: "
+								+ session.getAttribute("Name"));
 					}
 				%>
 			</div>
@@ -102,10 +110,12 @@
 					alt="Produktbild ist nicht sichtbar">
 			</div>
 			<div id="Registrierung">
-				<button class="button" id="produktEinstellenButton">
+				<button class="button" id="produktEinstellenButton"
+					<%if (session.getAttribute("Name") == null) {%> disabled <%}%>>
 					<span>Produkt einstellen</span>
 				</button>
-				<button class="button" id="geboteAbgebenButton">
+				<button class="button" id="geboteAbgebenButton"
+					<%if (session.getAttribute("Name") == null) {%> disabled <%}%>>
 					<span>Gebote abgeben</span>
 				</button>
 			</div>
@@ -121,15 +131,16 @@
 				<h2>Produkt einstellen</h2>
 			</div>
 			<div class="modal-body">
-				<FORM NAME="form2" METHOD="POST" action="BildUpload.jsp" enctype="multipart/form-data">
+				<FORM NAME="form2" METHOD="POST" action="BildUpload.jsp"
+					enctype="multipart/form-data">
 					<INPUT TYPE="HIDDEN" NAME="Produktname"> <INPUT
 						TYPE="HIDDEN" NAME="Produktbild"> <INPUT TYPE="HIDDEN"
 						NAME="Produktbeschreibung"> <INPUT TYPE="text"
 						placeholder="Produktname" id="ProduktnameText"> <br>
 					<TEXTAREA rows="20" cols="200" id="ProduktBeschreibungText">Produktbeschreibung bitte eingeben. Bedenken Sie, je besser ihre Produktbeschreibung, desto wahrscheinlicher sind viele Gebote.</TEXTAREA>
-					<br> <INPUT TYPE="file" name="produktBild" accept="image/*" id="ProduktBild" size="50">
-					<br> <INPUT TYPE="button" VALUE="Produkt einstellen"
-						ONCLICK="produktEinstellen()">
+					<br> <INPUT TYPE="file" name="produktBild" accept="image/*"
+						id="ProduktBild" size="50"> <br> <INPUT TYPE="button"
+						VALUE="Produkt einstellen" ONCLICK="produktEinstellen()">
 				</FORM>
 			</div>
 			<div class="modal-footer">
