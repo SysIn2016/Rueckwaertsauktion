@@ -119,8 +119,8 @@
 					<span>Gebote abgeben</span>
 				</button>
 				<h3>Kommende Auktionen:</h3><br>
-				<%for(String datum : logik.getAuktionsliste().keySet()){
-					out.println(datum + "\t" + logik.getAuktionsliste().get(datum).getProduktID() + "<br>");
+				<%for(String next : logik.gibNaechsteZehn()){
+					out.println(next + "\t" + "<br>");
 				}%>
 			</div>
 		</div>

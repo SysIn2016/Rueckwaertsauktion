@@ -1,6 +1,7 @@
 package Sysint2016.Rueckwaertsauktion;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -91,6 +92,49 @@ public class AuktionLogik {
 					+ (datum.getYear() + 1900);
 		}
 		auktionsliste.put(heute, new Auktion(produkt.getProduktID()));
+	}
+
+	/**
+	 * Die Funktion gibt die naechsten 10 Auktionen aus, die in der Liste der
+	 * Auktionen anstehen.
+	 * 
+	 * @return, Liste der Auktionen nach dem Muster <Datum>\t<Produkt>
+	 */
+	public LinkedList<String> gibNaechsteZehn() {
+		LinkedList<Date> datumsliste = new LinkedList<Date>();
+		LinkedList<String> ergListe = new LinkedList<String>();
+		for (String datum : auktionsliste.keySet()) {
+			Date d = new Date(Integer.parseInt(datum.split("\\.")[2]) - 1900,
+					Integer.parseInt(datum.split("\\.")[1]) - 1,
+					Integer.parseInt(datum.split("\\.")[0]));
+			boolean added = false;
+			for (Date da : datumsliste) {
+				if (d.before(da)) {
+					ergListe.add(datumsliste.indexOf(da), datum + "\t"
+							+ auktionsliste.get(datum).getProduktID());
+					datumsliste.add(datumsliste.indexOf(da), d);
+					if (datumsliste.size() > 10) {
+						datumsliste.remove(10);
+						ergListe.remove(10);
+					}
+					added = true;
+					break;
+				}
+			}
+			/*
+			 * Deckt auch den Fall ab, dass die Liste noch leer ist
+			 */
+			if (!added) {
+				datumsliste.add(d);
+				ergListe.add(datum + "\t"
+						+ auktionsliste.get(datum).getProduktID());
+				if (datumsliste.size() > 10) {
+					datumsliste.remove(10);
+					ergListe.remove(10);
+				}
+			}
+		}
+		return ergListe;
 	}
 
 	public int gebeGebotAb(String nutzername, float gebot) {
