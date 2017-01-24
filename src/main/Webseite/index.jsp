@@ -35,12 +35,6 @@
 			}
 		}
 	%>
-	<%
-		if (request.getParameter("Produktname") != null && request.getParameter("Produktbild") != null
-				&& request.getParameter("Produktbeschreibung") != null) {
-			out.print("HAHA!");
-		}
-	%>
 	<div id="login" class="modal"
 		<%if (request.getParameter("Name") != null && request.getParameter("Passwort") != null) {
 				if (!nutzerverwaltung.anmelden(request.getParameter("Name"), request.getParameter("Passwort"))) {

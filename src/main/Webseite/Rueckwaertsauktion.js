@@ -17,11 +17,7 @@ function ausloggen() {
 }
 
 function produktEinstellen() {
-	document.form2.Produktname.value = document
-			.getElementById("ProduktnameText").value;
-	document.form2.Produktbild.value = document.getElementById("ProduktBild").value;
-	document.form2.Produktbeschreibung.value = document
-			.getElementById("ProduktBeschreibungText").value;
+	
 	form2.submit();
 }
 
