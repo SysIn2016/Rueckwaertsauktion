@@ -9,7 +9,7 @@ public class NutzerModel implements NutzerDao{
 	
 	public Nutzer speicherNutzer(Nutzer nutzer) {
 		this.initDb.getMapper().save(nutzer);
-		return null;
+		return nutzer;
 	}
 
 }

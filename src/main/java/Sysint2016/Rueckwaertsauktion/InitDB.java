@@ -34,6 +34,10 @@ public class InitDB {
         CreateTableRequest tableRequestNutzer = mapper.generateCreateTableRequest(Nutzer.class);
         tableRequestNutzer.setProvisionedThroughput( new ProvisionedThroughput(1L, 1L));
         TableUtils.createTableIfNotExists(dynamoDB, tableRequestNutzer);
+
+        CreateTableRequest tableRequestErgebnis = mapper.generateCreateTableRequest(Ergebnis.class);
+        tableRequestErgebnis.setProvisionedThroughput( new ProvisionedThroughput(1L, 1L));
+        TableUtils.createTableIfNotExists(dynamoDB, tableRequestErgebnis);
     }
     
 	private void init() throws Exception {
