@@ -1,8 +1,14 @@
 package Sysint2016.Rueckwaertsauktion;
 
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
@@ -46,16 +52,20 @@ public class InitDB {
          * credential profile by reading from the credentials file located at
          * (/home/herval/.aws/credentials).
          */
-        AWSCredentials credentials = null;
-        try {
-            credentials = new ProfileCredentialsProvider("Mentalist").getCredentials();
-        } catch (Exception e) {
-            throw new AmazonClientException(
-                    "Cannot load the credentials from the credential profiles file. " +
-                    "Please make sure that your credentials file is at the correct " +
-                    "location (/home/herval/.aws/credentials), and is in valid format.",
-                    e);
-        }
+		
+		File credentials1 = new File("src/main/Webseite/Credentials.txt");
+		String line = "";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(credentials1));
+			line = br.readLine();
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		AWSCredentials credentials = new BasicAWSCredentials(
+				line.split(",")[0], line.split(",")[1]);
+        
         dynamoDB = new AmazonDynamoDBClient(credentials);
         Region usWest2 = Region.getRegion(Regions.US_WEST_2);
         dynamoDB.setRegion(usWest2);
