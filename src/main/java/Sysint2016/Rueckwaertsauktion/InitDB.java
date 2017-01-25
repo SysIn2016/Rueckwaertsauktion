@@ -1,6 +1,5 @@
 package Sysint2016.Rueckwaertsauktion;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
@@ -18,8 +17,6 @@ public class InitDB {
 	private DynamoDBMapper mapper;
  
     private AmazonDynamoDBClient dynamoDB = new AmazonDynamoDBClient();
-    @Autowired
-    ProduktRepository repository;
     
     public InitDB(){
     	try {
@@ -75,13 +72,4 @@ public class InitDB {
 	public void setDynamoDB(AmazonDynamoDBClient dynamoDB) {
 		this.dynamoDB = dynamoDB;
 	}
-
-	public ProduktRepository getRepository() {
-		return repository;
-	}
-
-	public void setRepository(ProduktRepository repository) {
-		this.repository = repository;
-	}
-	
 }

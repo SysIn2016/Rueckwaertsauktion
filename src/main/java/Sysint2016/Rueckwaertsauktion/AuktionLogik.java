@@ -28,9 +28,9 @@ public class AuktionLogik {
 		//produktverwaltung = new Produktverwaltung();
 	}
 	
-	public AuktionLogik(Produktverwaltung n_produktverwaltung){
+	public AuktionLogik(){
 		model = new ProduktModel();
-		this.produktverwaltung = n_produktverwaltung;
+		this.produktverwaltung = model;
 	}
 
 	/**

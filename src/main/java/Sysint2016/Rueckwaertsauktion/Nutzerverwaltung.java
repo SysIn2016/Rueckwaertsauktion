@@ -32,6 +32,8 @@ import com.amazonaws.services.simpleemail.model.SendEmailRequest;
  */
 public class Nutzerverwaltung {
 
+	private NutzerModel nm;
+	private NutzerDao ndao;
 	// Der Vollqualifizierte Name des Administrators im AD
 	final static String ADMIN_NAME = "cn=Manager,dc=sysin,dc=de";
 	final static String ADMIN_PASSWORD = "M4rioBRB";
@@ -39,6 +41,11 @@ public class Nutzerverwaltung {
 	final static String SEARCH_BASE = "ou=Users,dc=sysin,dc=de";
 
 	static LdapContext ctx;
+
+	public Nutzerverwaltung() {
+		nm = new NutzerModel();
+		ndao = nm;
+	}
 
 	/**
 	 * Diese Methode dient der Anmeldung eines Kunden.
@@ -50,15 +57,14 @@ public class Nutzerverwaltung {
 	 * @return true, Nutzerdaten sind gueltig <br>
 	 *         false, Nutzerdaten sind nicht gueltig
 	 */
-	public boolean anmelden(String nutzername, String passwort)
-			throws Exception {
+
+	public boolean anmelden(String nutzername, String passwort) throws Exception {
 		boolean erfolgreich = false;
 
 		init();
 
 		Hashtable credentials = (Hashtable) ctx.getEnvironment().clone();
-		credentials.put(Context.SECURITY_PRINCIPAL, "uid=" + nutzername
-				+ ",ou=Users,dc=sysin,dc=de");
+		credentials.put(Context.SECURITY_PRINCIPAL, "uid=" + nutzername + ",ou=Users,dc=sysin,dc=de");
 		credentials.put(Context.SECURITY_CREDENTIALS, passwort);
 		try {
 			DirContext dirContext = new InitialDirContext(credentials);
@@ -91,10 +97,9 @@ public class Nutzerverwaltung {
 	 * @param bic
 	 * @return true: der Benutzer wurde angelegt,<br>
 	 *         false: der Benutzer wurde nicht angelegt
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public boolean registrieren(String vorname, String nachname,
-			String username, String emailadresse, String passwort,
+	public boolean registrieren(String vorname, String nachname, String username, String emailadresse, String passwort,
 			String kontonummer, String iban, String bic) throws Exception {
 		boolean ergebnis = true;
 		/*
@@ -102,36 +107,38 @@ public class Nutzerverwaltung {
 		 * ist, und das eventuelle Anlegen des neuen Nutzers.
 		 */
 		init();
-		
-        String entryDN = "uid=" + username + ",ou=Users,dc=sysin,dc=de";
 
-	    Attribute cn = new BasicAttribute("cn", vorname + " " + nachname);  
-	    Attribute sn = new BasicAttribute("sn", nachname);
-	    Attribute givenName = new BasicAttribute("givenName", vorname);
-	    Attribute mail = new BasicAttribute("mail", emailadresse);
-	    Attribute password = new BasicAttribute("userPassword", passwort);
-	    Attribute oc = new BasicAttribute("objectClass", "inetOrgPerson"); 
-	    //DirContext ctx = null;  
-		
-		try {  
-			
-			// build the entry  
-			BasicAttributes entry = new BasicAttributes();  
-			entry.put(cn);  
-			entry.put(sn);  
-			entry.put(mail);  
+		String entryDN = "uid=" + username + ",ou=Users,dc=sysin,dc=de";
+
+		Attribute cn = new BasicAttribute("cn", vorname + " " + nachname);
+		Attribute sn = new BasicAttribute("sn", nachname);
+		Attribute givenName = new BasicAttribute("givenName", vorname);
+		Attribute mail = new BasicAttribute("mail", emailadresse);
+		Attribute password = new BasicAttribute("userPassword", passwort);
+		Attribute oc = new BasicAttribute("objectClass", "inetOrgPerson");
+		// DirContext ctx = null;
+
+		try {
+
+			// build the entry
+			BasicAttributes entry = new BasicAttributes();
+			entry.put(cn);
+			entry.put(sn);
+			entry.put(mail);
 			entry.put(givenName);
 			entry.put(password);
-			
-			entry.put(oc); 
-			
+
+			entry.put(oc);
+
 			ctx.createSubcontext(entryDN, entry);
-		
-		} catch (NamingException e) {  
+			Nutzer nutzer = new Nutzer(username, kontonummer, iban, bic);
+			ndao.speicherNutzer(nutzer);
+
+		} catch (NamingException e) {
 			System.err.println("AddUser: error adding entry." + e);
 			ergebnis = false;
 		}
-		
+
 		return ergebnis;
 	}
 
@@ -142,40 +149,39 @@ public class Nutzerverwaltung {
 	 *            , E-Mailadresse des neuen Nutzers
 	 */
 	public void sendeRegistrationsmail(String benutzername) throws IOException {
-		
+
 		// Welche Adresse?
 		String mailFrom = "der_kakerlak@web.de";
 		String mailTo = "der_kakerlak@web.de";
-		String mailBody = "Hallo " + benutzername + "!\n\n Herzlich willkommen bei der SysIn Rueckwaertsauktion!\n\n Viel Spass beim Bieten.\n\nDiese E-Mail wurde mit Amazon SES versendet.";
+		String mailBody = "Hallo " + benutzername
+				+ "!\n\n Herzlich willkommen bei der SysIn Rueckwaertsauktion!\n\n Viel Spass beim Bieten.\n\nDiese E-Mail wurde mit Amazon SES versendet.";
 		String mailSubject = "Registrierung bei SysIn-Rueckwaertsauktion";
-		
-		Destination destination = new Destination().withToAddresses(new String[]{mailTo});
-		
+
+		Destination destination = new Destination().withToAddresses(new String[] { mailTo });
+
 		Content subject = new Content().withData(mailSubject);
-        Content textBody = new Content().withData(mailBody); 
-        Body body = new Body().withText(textBody);
-        
-        Message message = new Message().withSubject(subject).withBody(body);
-        
-        SendEmailRequest request = new SendEmailRequest().withSource(mailFrom).withDestination(destination).withMessage(message);
-        
-        try
-        {    
-	        
-            AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient();
-            
-            // Region anpassen?
-            Region REGION = Region.getRegion(Regions.US_WEST_2);
-            client.setRegion(REGION);
-       
-            client.sendEmail(request);
-        }
-        catch (Exception ex) 
-        {
-            System.out.println("E-Mail wurde nicht gesendet");
-            System.out.println("Error message: " + ex.getMessage());
-            ex.printStackTrace();
-        }
+		Content textBody = new Content().withData(mailBody);
+		Body body = new Body().withText(textBody);
+
+		Message message = new Message().withSubject(subject).withBody(body);
+
+		SendEmailRequest request = new SendEmailRequest().withSource(mailFrom).withDestination(destination)
+				.withMessage(message);
+
+		try {
+
+			AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient();
+
+			// Region anpassen?
+			Region REGION = Region.getRegion(Regions.US_WEST_2);
+			client.setRegion(REGION);
+
+			client.sendEmail(request);
+		} catch (Exception ex) {
+			System.out.println("E-Mail wurde nicht gesendet");
+			System.out.println("Error message: " + ex.getMessage());
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -188,8 +194,7 @@ public class Nutzerverwaltung {
 	 */
 	static void init() throws Exception {
 		Hashtable env = new Hashtable();
-		env.put(Context.INITIAL_CONTEXT_FACTORY,
-				"com.sun.jndi.ldap.LdapCtxFactory");
+		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.SECURITY_PRINCIPAL, ADMIN_NAME);
 		env.put(Context.SECURITY_CREDENTIALS, ADMIN_PASSWORD);
