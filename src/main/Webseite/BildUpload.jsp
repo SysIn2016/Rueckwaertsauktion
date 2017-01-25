@@ -60,7 +60,7 @@
             {
             // Get the uploaded file parameters
             String fieldName = fi.getFieldName();
-            fileName = fi.getName();
+            fileName = (String)session.getAttribute("Name")+ "/" +fi.getName();
             boolean isInMemory = fi.isInMemory();
             long sizeInBytes = fi.getSize();
             // Write the file
