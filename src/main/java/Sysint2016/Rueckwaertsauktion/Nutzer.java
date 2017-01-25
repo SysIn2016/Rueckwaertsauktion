@@ -1,9 +1,15 @@
 package Sysint2016.Rueckwaertsauktion;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
 /**
  * Diese Klasse repräsentiert einen Nutzer im System.
  * 
  */
+
+@DynamoDBTable(tableName = "Nutzer")
 public class Nutzer {
 	private String vorname;
 	private String nachname;
@@ -13,6 +19,7 @@ public class Nutzer {
 	private String kontonummer;
 	private String iban;
 	private String bic;
+	private int id;
 
 	/**
 	 * Konstruktor für einen Nutzer
@@ -40,6 +47,16 @@ public class Nutzer {
 		this.bic = bic;
 	}
 
+	@DynamoDBHashKey
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@DynamoDBAttribute
 	public String getVorname() {
 		return vorname;
 	}
@@ -48,6 +65,7 @@ public class Nutzer {
 		this.vorname = vorname;
 	}
 
+	@DynamoDBAttribute
 	public String getNachname() {
 		return nachname;
 	}
@@ -56,6 +74,7 @@ public class Nutzer {
 		this.nachname = nachname;
 	}
 
+	@DynamoDBAttribute
 	public String getUsername() {
 		return username;
 	}
@@ -64,6 +83,7 @@ public class Nutzer {
 		this.username = username;
 	}
 
+	@DynamoDBAttribute
 	public String getEmailadresse() {
 		return emailadresse;
 	}
@@ -72,6 +92,7 @@ public class Nutzer {
 		this.emailadresse = emailadresse;
 	}
 
+	@DynamoDBAttribute
 	public String getPasswort() {
 		return passwort;
 	}
@@ -80,6 +101,7 @@ public class Nutzer {
 		this.passwort = passwort;
 	}
 
+	@DynamoDBAttribute
 	public String getKontonummer() {
 		return kontonummer;
 	}
@@ -88,6 +110,7 @@ public class Nutzer {
 		this.kontonummer = kontonummer;
 	}
 
+	@DynamoDBAttribute
 	public String getIban() {
 		return iban;
 	}
@@ -96,6 +119,7 @@ public class Nutzer {
 		this.iban = iban;
 	}
 
+	@DynamoDBAttribute
 	public String getBic() {
 		return bic;
 	}

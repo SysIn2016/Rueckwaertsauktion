@@ -9,6 +9,13 @@
 
 	<name>Rueckwaertsauktion</name>
 	<url>http://maven.apache.org</url>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.3.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -63,14 +70,45 @@
 			<version>1.3.2</version>
 		</dependency>
 		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-dynamodb</artifactId>
-			<version>1.11.83</version>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk-dynamodb</artifactId>
+		    <version>1.11.83</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-jpa</artifactId>
+		    <version>1.4.3.RELEASE</version>
+		</dependency>
+		<dependency>
+	        <groupId>com.h2database</groupId>
+	        <artifactId>h2</artifactId>
+	        <version>1.3.156</version>
+    	</dependency>
+
+    	<dependency>
+        	<groupId>com.github.derjust</groupId>
+        	<artifactId>spring-data-dynamodb</artifactId>
+        	<version>4.3.1</version>
+    	</dependency>
 	</dependencies>
+	<dependencyManagement>
+    	<dependencies>
+    		<dependency>
+        		<groupId>org.springframework.data</groupId>
+        		<artifactId>spring-data-releasetrain</artifactId>
+        		<version>Gosling-SR1</version>
+        		<type>pom</type>
+        		<scope>import</scope>
+        	</dependency>
+    	</dependencies>
+	</dependencyManagement>
 	<build>
 		<finalName>Rueckwaertsauktion</finalName>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>appassembler-maven-plugin</artifactId>

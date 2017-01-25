@@ -1,11 +1,17 @@
 package Sysint2016.Rueckwaertsauktion;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
 /**
  * Diese Klasse stellt ein Produkt dar.
  * 
  * @author Mario Kaulmann
  * 
  */
+
+@DynamoDBTable(tableName = "Produkt")
 public class Produkt {
 	private static int naechsteID;
 
@@ -60,6 +66,7 @@ public class Produkt {
 		}
 	}
 
+	@DynamoDBAttribute
 	public String getProduktname() {
 		return produktname;
 	}
@@ -68,6 +75,7 @@ public class Produkt {
 		this.produktname = produktname;
 	}
 
+	@DynamoDBAttribute
 	public String getProduktbeschreibung() {
 		return produktbeschreibung;
 	}
@@ -76,6 +84,7 @@ public class Produkt {
 		this.produktbeschreibung = produktbeschreibung;
 	}
 
+	@DynamoDBAttribute
 	public String getEinstellerID() {
 		return einstellerID;
 	}
@@ -84,6 +93,7 @@ public class Produkt {
 		this.einstellerID = einstellerID;
 	}
 
+	@DynamoDBAttribute
 	public String getBildID() {
 		return bildID;
 	}
@@ -92,6 +102,7 @@ public class Produkt {
 		this.bildID = bildID;
 	}
 
+	@DynamoDBHashKey
 	public int getProduktID() {
 		return produktID;
 	}

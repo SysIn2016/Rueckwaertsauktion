@@ -8,29 +8,23 @@ package Sysint2016.Rueckwaertsauktion;
  * @author arbeit
  * 
  */
-public class Produktverwaltung {
+public interface Produktverwaltung {
 
 	/**
 	 * Diese Methode speichert das Produkt in der Datenbank
 	 * @param produkt
 	 */
-	public void speicherProdukt(Produkt produkt){
-		
-	}
+	public Produkt speicherProdukt(Produkt produkt);
 	
 	/**
 	 * Diese Methode loescht das Produkt aus der Datenbank
 	 * @param produktID
 	 */
-	public void loescheProdukt(int produktID){
-		
-	}
+	public Produkt loescheProdukt(int produktID);
 	
 	/**
 	 * Diese Methode liest das Produkt aus der Datenbank
 	 * @param produktID
 	 */
-	public void findeProdukt(int produktID){
-		
-	}
+	public Produkt findeProdukt(int produktID);
 }

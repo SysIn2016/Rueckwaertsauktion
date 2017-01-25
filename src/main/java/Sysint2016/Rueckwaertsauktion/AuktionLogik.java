@@ -19,11 +19,17 @@ public class AuktionLogik {
 	 */
 	private static ConcurrentHashMap<String, Auktion> auktionsliste;
 
-	private static Produktverwaltung produktverwaltung;
+	private ProduktModel model;
+	private Produktverwaltung produktverwaltung;
 
 	static {
 		auktionsliste = new ConcurrentHashMap<String, Auktion>();
-		produktverwaltung = new Produktverwaltung();
+		//produktverwaltung = new Produktverwaltung();
+	}
+	
+	public AuktionLogik(Produktverwaltung n_produktverwaltung){
+		model = new ProduktModel();
+		this.produktverwaltung = n_produktverwaltung;
 	}
 
 	/**
