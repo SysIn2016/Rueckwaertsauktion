@@ -118,6 +118,10 @@
 					<%if (session.getAttribute("Name") == null) {%> disabled <%}%>>
 					<span>Gebote abgeben</span>
 				</button>
+				<h3>Kommende Auktionen:</h3><br>
+				<%for(String next : logik.gibNaechsteZehn()){
+					out.println(next + "\t" + "<br>");
+				}%>
 			</div>
 		</div>
 	</div>
