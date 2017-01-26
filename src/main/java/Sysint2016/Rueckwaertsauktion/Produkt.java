@@ -30,6 +30,10 @@ public class Produkt {
 	static {
 		naechsteID = 0;
 	}
+	
+	public Produkt(){
+		
+	}
 
 	/**
 	 * Konstrukter eines Produkts
@@ -105,5 +109,12 @@ public class Produkt {
 	@DynamoDBHashKey
 	public int getProduktID() {
 		return produktID;
+	}
+	
+	public void setProduktID(int ProduktID){
+		this.produktID = ProduktID;
+		if (naechsteID <= produktID){
+			naechsteID++;
+		}
 	}
 }

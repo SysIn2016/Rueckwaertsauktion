@@ -64,7 +64,7 @@ public class AuktionLogik {
 	 *         -1 symbolisiert, dass kein Produkt an dem entsprechenden Datum
 	 *         versteigert werden soll.
 	 */
-	public static int getProduktID(String datum) {
+	public int getProduktID(String datum) {
 		int produktID = -1;
 		if (auktionsliste.containsKey(datum)) {
 			produktID = auktionsliste.get(datum).getProduktID();
@@ -174,5 +174,9 @@ public class AuktionLogik {
 
 		String heute = tag + "." + monat + "." + jahr;
 		return heute;
+	}
+
+	public Produktverwaltung getProduktverwaltung() {
+		return produktverwaltung;
 	}
 }

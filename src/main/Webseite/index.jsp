@@ -39,6 +39,11 @@
 				request.getParameter("UUsername"));
 			}
 		}
+		int produktID = logik.getProduktID(logik.getDatumAlsString(null));
+		String bildURL = "Platzhalter.png";
+		if(produktID != -1){
+			bildURL = logik.getProduktverwaltung().findeProdukt(produktID).getBildID();
+		}
 	%>
 	<div id="login" class="modal"
 		<%if (request.getParameter("Name") != null
@@ -106,7 +111,8 @@
 		</div>
 		<div id="unten">
 			<div id="bild">
-				<img src="Platzhalter.png" width="900"
+				<img src=<%out.print("\"" + bildURL +"\"");
+				%> width="900"
 					alt="Produktbild ist nicht sichtbar">
 			</div>
 			<div id="Registrierung">
