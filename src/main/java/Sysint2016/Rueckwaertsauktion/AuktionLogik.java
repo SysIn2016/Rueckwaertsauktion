@@ -25,10 +25,10 @@ public class AuktionLogik {
 
 	static {
 		auktionsliste = new ConcurrentHashMap<String, Auktion>();
-		//produktverwaltung = new Produktverwaltung();
+		// produktverwaltung = new Produktverwaltung();
 	}
-	
-	public AuktionLogik(){
+
+	public AuktionLogik() {
 		model = new ProduktModel();
 		this.produktverwaltung = model;
 	}
@@ -90,12 +90,10 @@ public class AuktionLogik {
 		 * Nur Übergangslösung
 		 */
 		Date datum = new Date();
-		String heute = datum.getDate() + "." + (datum.getMonth() + 1) + "."
-				+ (datum.getYear() + 1900);
+		String heute = getDatumAlsString(null);
 		while (auktionsliste.containsKey(heute)) {
 			datum.setDate(datum.getDate() + 1);
-			heute = datum.getDate() + "." + (datum.getMonth() + 1) + "."
-					+ (datum.getYear() + 1900);
+			heute = getDatumAlsString(datum);
 		}
 		auktionsliste.put(heute, new Auktion(produkt.getProduktID()));
 	}
@@ -144,13 +142,37 @@ public class AuktionLogik {
 	}
 
 	public int gebeGebotAb(String nutzername, float gebot) {
-		Date datum = new Date();
-		String heute = datum.getDate() + "." + (datum.getMonth() + 1) + "."
-				+ (datum.getYear() + 1900);
+		String heute = getDatumAlsString(null);
 		return auktionsliste.get(heute).neuesGebot(nutzername, gebot);
 	}
 
 	public static ConcurrentHashMap<String, Auktion> getAuktionsliste() {
 		return auktionsliste;
+	}
+
+	/**
+	 * Methode zur einheitlichen Erstellung des Zeitstempels.
+	 * 
+	 * @param datum
+	 *            , Datum, das zum String werden soll <br>
+	 *            Wenn null, dann wird das aktuelle Datum genommen
+	 * @return Stringrepräsentation des Datums
+	 */
+	public String getDatumAlsString(Date datum) {
+		if (datum == null) {
+			datum = new Date();
+		}
+		String tag = String.valueOf(datum.getDate());
+		if (tag.length() == 1) {
+			tag = '0' + tag;
+		}
+		String monat = String.valueOf(datum.getMonth() + 1);
+		if (monat.length() == 1) {
+			monat = '0' + monat;
+		}
+		String jahr = String.valueOf(datum.getYear() + 1900);
+
+		String heute = tag + "." + monat + "." + jahr;
+		return heute;
 	}
 }
