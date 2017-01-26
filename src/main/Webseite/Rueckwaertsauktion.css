@@ -66,6 +66,10 @@
 	margin: 5px;
 }
 
+.button:disabled{
+	background-color: #333333;
+}
+
 .button span {
 	cursor: pointer;
 	display: inline-block;
