@@ -21,12 +21,14 @@ function produktEinstellen() {
 	var pbeschreibung = document.getElementById("ProduktBeschreibungText").value;
 	var pbild = document.getElementById("ProduktBild").value;
 	if(pname.length > 0 && pbeschreibung.length > 0 && pbild.length > 0){
-	document.form2.Produktname.value = pname;
-	document.form2.Produktbild.value = pbild;
-	document.form2.Produktbeschreibung.value = pbeschreibung;
-	form2.submit();
+		pbeschreibung = bereinige(pbeschreibung);
+		pname = bereinige(pname);
+		document.form2.Produktname.value = pname;
+		document.form2.Produktbild.value = pbild;
+		document.form2.Produktbeschreibung.value = pbeschreibung;
+		form2.submit();
 	} else{
-	alert("Bitte alle Felder ausfüllen.");
+		alert("Bitte alle Felder ausfüllen.");
 	}
 }
 
@@ -67,4 +69,21 @@ function registrieren() {
 
 function gebotAbgeben() {
 
+}
+
+function bereinige(zeichenkette){
+	zeichenkette = zeichenkette.replace(/&/g, "&amp;");
+	zeichenkette = zeichenkette.replace(/ä/g, "&auml;");
+	zeichenkette = zeichenkette.replace(/ö/g, "&ouml;");
+	zeichenkette = zeichenkette.replace(/ü/g, "&uuml;");
+	zeichenkette = zeichenkette.replace(/ß/g, "&szlig;");
+	zeichenkette = zeichenkette.replace(/Ä/g, "&Auml;");
+	zeichenkette = zeichenkette.replace(/Ö/g, "&Ouml;");
+	zeichenkette = zeichenkette.replace(/Ü/g, "&Uuml;");
+	zeichenkette = zeichenkette.replace(/€/g, "&euro;");
+	zeichenkette = zeichenkette.replace(/</g, "&lt;");
+	zeichenkette = zeichenkette.replace(/>/g, "&gt;");
+	zeichenkette = zeichenkette.replace(/"/g, "&quot;");
+	zeichenkette = zeichenkette.replace(/§/g, "&sect;");
+	return zeichenkette;
 }

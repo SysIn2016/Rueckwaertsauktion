@@ -41,8 +41,13 @@
 		}
 		int produktID = logik.getProduktID(logik.getDatumAlsString(null));
 		String bildURL = "Platzhalter.png";
+		String produktname = "Heute keine Auktion";
+		String produktbeschreibung = "F&uuml;r heute ist keine Auktion vorgemerkt.";
 		if(produktID != -1){
-			bildURL = logik.getProduktverwaltung().findeProdukt(produktID).getBildID();
+			Sysint2016.Rueckwaertsauktion.Produkt p = logik.getProduktverwaltung().findeProdukt(produktID);
+			bildURL = p.getBildID();
+			produktname= p.getProduktname();
+			produktbeschreibung = p.getProduktbeschreibung();
 		}
 	%>
 	<div id="login" class="modal"
@@ -111,6 +116,8 @@
 		</div>
 		<div id="unten">
 			<div id="bild">
+				<h3><%out.print(produktname); %></h3><br>
+				<%out.print("Beschreibung: " + produktbeschreibung); %><br>
 				<img src=<%out.print("\"" + bildURL +"\"");
 				%> width="900"
 					alt="Produktbild ist nicht sichtbar">
