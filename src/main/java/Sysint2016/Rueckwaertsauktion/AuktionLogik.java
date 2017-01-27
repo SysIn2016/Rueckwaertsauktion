@@ -1,7 +1,11 @@
 package Sysint2016.Rueckwaertsauktion;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -25,7 +29,14 @@ public class AuktionLogik {
 
 	static {
 		auktionsliste = new ConcurrentHashMap<String, Auktion>();
-		// produktverwaltung = new Produktverwaltung();
+		DateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+	    try {
+			Date date = dateFormatter.parse(getDatumAlsString(null) + " 23:59:59");
+			Timer timer = new Timer();
+		    timer.schedule(new ErgebnisTask(auktionsliste), date, 86400000 );
+		} catch (ParseException e) {
+			System.out.println("Es wird keine Auktionsergebnisse geben!");
+		}
 	}
 
 	public AuktionLogik() {
@@ -185,7 +196,7 @@ public class AuktionLogik {
 	 *            Wenn null, dann wird das aktuelle Datum genommen
 	 * @return Stringrepräsentation des Datums
 	 */
-	public String getDatumAlsString(Date datum) {
+	public static String getDatumAlsString(Date datum) {
 		if (datum == null) {
 			datum = new Date();
 		}

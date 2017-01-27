@@ -49,8 +49,8 @@ public class Auktion {
 	 *         Auktion gewonnen hat und den Betrag, der geboten wurde und die ID
 	 *         des Produktes
 	 */
-	public String auswerten() {
-		String ergebnis = "";
+	public void auswerten(String datum) {
+		Ergebnis ergebnis = null;
 		float gewinnsumme = Float.MAX_VALUE;
 		for (float wert : auswertung.keySet()) {
 			if (auswertung.get(wert) == true) {
@@ -61,11 +61,14 @@ public class Auktion {
 		}
 		for (String nutzer : gebote.keySet()) {
 			if (gebote.get(nutzer).contains(gewinnsumme)) {
-				ergebnis = nutzer + "\t" + gewinnsumme + "\t" + produktID;
+				ergebnis = new Ergebnis(produktID,nutzer,datum,gewinnsumme);
 				break;
 			}
 		}
-		return ergebnis;
+		if(ergebnis != null){
+			ErgebnisModel model = new ErgebnisModel();
+			model.speicherErgebnis(ergebnis);
+		}
 	}
 
 	public int getProduktID() {
