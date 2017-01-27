@@ -43,10 +43,11 @@
 		String bildURL = "Platzhalter.png";
 		String produktname = "Heute keine Auktion";
 		String produktbeschreibung = "F&uuml;r heute ist keine Auktion vorgemerkt.";
-		if(produktID != -1){
-			Sysint2016.Rueckwaertsauktion.Produkt p = logik.getProduktverwaltung().findeProdukt(produktID);
+		if (produktID != -1) {
+			Sysint2016.Rueckwaertsauktion.Produkt p = logik
+					.getProduktverwaltung().findeProdukt(produktID);
 			bildURL = p.getBildID();
-			produktname= p.getProduktname();
+			produktname = p.getProduktname();
 			produktbeschreibung = p.getProduktbeschreibung();
 		}
 	%>
@@ -85,7 +86,11 @@
 	<div id="main">
 		<div id="oben">
 			<div id="Registrierung">
-				<button class="button" id="registrierenButton">
+				<button class="button"
+					<%if (session.getAttribute("Name") != null) {
+				out.print("disabled");
+			}%>
+					id="registrierenButton">
 					<span>Registrieren</span>
 				</button>
 				<button class="button"
@@ -116,10 +121,16 @@
 		</div>
 		<div id="unten">
 			<div id="bild">
-				<h3><%out.print(produktname); %></h3><br>
-				<%out.print("Beschreibung: " + produktbeschreibung); %><br>
-				<img src=<%out.print("\"" + bildURL +"\"");
-				%> width="900"
+				<h3>
+					<%
+						out.print(produktname);
+					%>
+				</h3>
+				<br>
+				<%
+					out.print("Beschreibung: " + produktbeschreibung);
+				%><br> <img
+					src=<%out.print("\"" + bildURL + "\"");%> width="900"
 					alt="Produktbild ist nicht sichtbar">
 			</div>
 			<div id="Registrierung">
@@ -131,10 +142,13 @@
 					<%if (session.getAttribute("Name") == null) {%> disabled <%}%>>
 					<span>Gebote abgeben</span>
 				</button>
-				<h3>Kommende Auktionen:</h3><br>
-				<%for(String next : logik.gibNaechsteZehn()){
-					out.println(next + "\t" + "<br>");
-				}%>
+				<h3>Kommende Auktionen:</h3>
+				<br>
+				<%
+					for (String next : logik.gibNaechsteZehn()) {
+						out.println(next + "\t" + "<br>");
+					}
+				%>
 			</div>
 		</div>
 	</div>

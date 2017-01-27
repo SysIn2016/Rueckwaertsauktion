@@ -115,7 +115,7 @@ public class AuktionLogik {
 			for (Date da : datumsliste) {
 				if (d.before(da)) {
 					ergListe.add(datumsliste.indexOf(da), datum + "\t"
-							+ auktionsliste.get(datum).getProduktID());
+							+ produktverwaltung.findeProdukt(auktionsliste.get(datum).getProduktID()).getProduktname());
 					datumsliste.add(datumsliste.indexOf(da), d);
 					if (datumsliste.size() > 10) {
 						datumsliste.remove(10);
@@ -131,7 +131,7 @@ public class AuktionLogik {
 			if (!added) {
 				datumsliste.add(d);
 				ergListe.add(datum + "\t"
-						+ auktionsliste.get(datum).getProduktID());
+						+ produktverwaltung.findeProdukt(auktionsliste.get(datum).getProduktID()).getProduktname());
 				if (datumsliste.size() > 10) {
 					datumsliste.remove(10);
 					ergListe.remove(10);
