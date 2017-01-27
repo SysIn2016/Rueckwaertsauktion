@@ -114,8 +114,14 @@ public class AuktionLogik {
 			boolean added = false;
 			for (Date da : datumsliste) {
 				if (d.before(da)) {
-					ergListe.add(datumsliste.indexOf(da), datum + "\t"
-							+ produktverwaltung.findeProdukt(auktionsliste.get(datum).getProduktID()).getProduktname());
+					ergListe.add(
+							datumsliste.indexOf(da),
+							datum
+									+ "\t"
+									+ produktverwaltung.findeProdukt(
+											auktionsliste.get(datum)
+													.getProduktID())
+											.getProduktname());
 					datumsliste.add(datumsliste.indexOf(da), d);
 					if (datumsliste.size() > 10) {
 						datumsliste.remove(10);
@@ -130,8 +136,11 @@ public class AuktionLogik {
 			 */
 			if (!added) {
 				datumsliste.add(d);
-				ergListe.add(datum + "\t"
-						+ produktverwaltung.findeProdukt(auktionsliste.get(datum).getProduktID()).getProduktname());
+				ergListe.add(datum
+						+ "\t"
+						+ produktverwaltung.findeProdukt(
+								auktionsliste.get(datum).getProduktID())
+								.getProduktname());
 				if (datumsliste.size() > 10) {
 					datumsliste.remove(10);
 					ergListe.remove(10);
@@ -141,13 +150,31 @@ public class AuktionLogik {
 		return ergListe;
 	}
 
+	/**
+	 * Die Funktion realisiert, dass ein Gebot abgegeben wird.
+	 * 
+	 * @param nutzername
+	 * @param gebot
+	 * @return, Anzahl der Gebote für das Produkt. Sollte es kein Produkt fuer
+	 *          den Tag geben, wird -1 zurueckgegeben.
+	 */
 	public int gebeGebotAb(String nutzername, float gebot) {
 		String heute = getDatumAlsString(null);
-		return auktionsliste.get(heute).neuesGebot(nutzername, gebot);
+		int anzahlGebote = -1;
+		if (auktionsliste.containsKey(heute)) {
+			anzahlGebote = auktionsliste.get(heute).neuesGebot(nutzername,
+					gebot);
+		}
+		return anzahlGebote;
 	}
-
-	public static ConcurrentHashMap<String, Auktion> getAuktionsliste() {
-		return auktionsliste;
+	
+	public int getAnzahlGebote(String nutzername){
+		String heute = getDatumAlsString(null);
+		int ergebnis = 0;
+		if(auktionsliste.containsKey(heute)){
+			ergebnis = auktionsliste.get(heute).getAnzahlGebote(nutzername);
+		}
+		return ergebnis;
 	}
 
 	/**

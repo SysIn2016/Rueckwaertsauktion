@@ -105,9 +105,12 @@
 				Diese Webseite ist ein Projekt im Rahmen einer Lehrveranstaltung im
 				Studium.<br> Es werden keine echten Auktionen angeboten!!!<br>
 				<%
+					int anzGebote = 0;
 					if (session.getAttribute("Name") != null) {
 						out.print("Sie sind angemeldet als: "
 								+ session.getAttribute("Name"));
+						anzGebote = logik.getAnzahlGebote((String) session
+								.getAttribute("Name"));
 					}
 				%>
 			</div>
@@ -129,9 +132,8 @@
 				<br>
 				<%
 					out.print("Beschreibung: " + produktbeschreibung);
-				%><br> <img
-					src=<%out.print("\"" + bildURL + "\"");%> width="900"
-					alt="Produktbild ist nicht sichtbar">
+				%><br> <img src=<%out.print("\"" + bildURL + "\"");%>
+					width="900" alt="Produktbild ist nicht sichtbar">
 			</div>
 			<div id="Registrierung">
 				<button class="button" id="produktEinstellenButton"
@@ -181,7 +183,13 @@
 	</div>
 
 	<!--  Popup Gebote abgeben -->
-	<div id="geboteAbgeben" class="modal">
+	<div id="geboteAbgeben" class="modal"
+		<%if (request.getParameter("UGebot") != null) {
+				out.print("style=\"display: block\"");
+				anzGebote = logik.gebeGebotAb(
+						(String) session.getAttribute("Name"),
+						Float.parseFloat(request.getParameter("UGebot")));
+			}%>>
 		<!-- Modal content -->
 		<div class="modal-content">
 			<div class="modal-header">
@@ -190,14 +198,17 @@
 			</div>
 			<div class="modal-body">
 				<FORM NAME="form3" METHOD="POST">
-					<INPUT TYPE="text" placeholder="Gebot" id="ProduktnameText">
-					<br> <INPUT TYPE="button" VALUE="bieten"
-						ONCLICK="gebotAbgeben()">
+					<INPUT TYPE="HIDDEN" NAME="UGebot"> <INPUT TYPE="text"
+						placeholder="Gebot" id="Gebot"> <br> <INPUT
+						TYPE="button" VALUE="bieten" ONCLICK="gebotAbgeben()">
 				</FORM>
 				Anzahl der Gebote für das heutige Produkt:
+				<%
+					out.print(anzGebote);
+				%>
 			</div>
 			<div class="modal-footer">
-				<h3>Stellen Sie ihr Produkt ein.</h3>
+				<h3>Geben Sie Ihr Gebot ab.</h3>
 			</div>
 		</div>
 	</div>

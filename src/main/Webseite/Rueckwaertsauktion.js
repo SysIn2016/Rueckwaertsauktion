@@ -68,7 +68,18 @@ function registrieren() {
 }
 
 function gebotAbgeben() {
-
+	var gebot = document.getElementById("Gebot").value;
+	if (gebot.length > 0){
+		gebot = gebot.replace(/,/g, ".");
+		document.form3.UGebot.value = gebot;
+		if(!isNaN(gebot)){
+			form3.submit();
+		} else {
+			alert("Geben Sie einen Geldbetrag ein.")
+		}
+	} else {
+		alert("Geben Sie ein Gebot ein.");
+	}
 }
 
 function bereinige(zeichenkette){

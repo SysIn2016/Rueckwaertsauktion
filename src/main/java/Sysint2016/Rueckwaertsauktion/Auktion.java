@@ -35,7 +35,7 @@ public class Auktion {
 		} else {
 			auswertung.put(gebot, true);
 		}
-		if (gebote.get(nutzername).isEmpty()) {
+		if (!gebote.containsKey(nutzername)) {
 			gebote.put(nutzername, new LinkedList<Float>());
 		}
 		gebote.get(nutzername).add(gebot);
@@ -70,5 +70,19 @@ public class Auktion {
 
 	public int getProduktID() {
 		return produktID;
+	}
+
+	/**
+	 * Die Methode gibt die Anzahl der Gebote eines Nutzers, bei einer Auktion.
+	 * 
+	 * @param nutzername
+	 * @return, Anzahl der Gebote des Nutzers
+	 */
+	public int getAnzahlGebote(String nutzername) {
+		int anzahl = 0;
+		if (gebote.containsKey(nutzername)) {
+			anzahl = gebote.get(nutzername).size();
+		}
+		return anzahl;
 	}
 }
