@@ -39,7 +39,7 @@
 				request.getParameter("UUsername"));
 			}
 		}
-		int produktID = logik.getProduktID(logik.getDatumAlsString(null));
+		int produktID = logik.getProduktID(Sysint2016.Rueckwaertsauktion.AuktionLogik.getDatumAlsString(null));
 		String bildURL = "Platzhalter.png";
 		String produktname = "Heute keine Auktion";
 		String produktbeschreibung = "F&uuml;r heute ist keine Auktion vorgemerkt.";
