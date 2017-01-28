@@ -117,7 +117,7 @@
 		</div>
 		<div id="mitte">
 			<div id="Gewinner">
-				<button class="button">
+				<button class="button" onclick="location.href='Ergebnisse.jsp';">
 					<span>Gewinner</span>
 				</button>
 			</div>

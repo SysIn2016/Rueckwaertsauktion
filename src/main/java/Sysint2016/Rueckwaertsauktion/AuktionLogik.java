@@ -223,4 +223,14 @@ public class AuktionLogik {
 	public Produktverwaltung getProduktverwaltung() {
 		return produktverwaltung;
 	}
+	
+	public LinkedList<String> gibErgebnisse(){
+		ErgebnisModel model = new ErgebnisModel();
+		LinkedList<String> ergListe = new LinkedList<String>();
+		for(Ergebnis erg : model.findeAlle()){
+			String produktname = this.model.findeProdukt(erg.getProduktID()).getProduktname();
+			ergListe.add(erg.getDatum() + "\t" + erg.getUsername() + "\t" + produktname + "\t" + erg.getPreis());
+		}
+		return ergListe;
+	}
 }
