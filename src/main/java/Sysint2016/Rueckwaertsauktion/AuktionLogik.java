@@ -30,10 +30,11 @@ public class AuktionLogik {
 	static {
 		auktionsliste = new ConcurrentHashMap<String, Auktion>();
 		DateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-	    try {
-			Date date = dateFormatter.parse(getDatumAlsString(null) + " 23:59:59");
+		try {
+			Date date = dateFormatter.parse(getDatumAlsString(null)
+					+ " 23:59:59");
 			Timer timer = new Timer();
-		    timer.schedule(new ErgebnisTask(auktionsliste), date, 86400000 );
+			timer.schedule(new ErgebnisTask(auktionsliste), date, 86400000);
 		} catch (ParseException e) {
 			System.out.println("Es wird keine Auktionsergebnisse geben!");
 		}
@@ -171,6 +172,11 @@ public class AuktionLogik {
 	 */
 	public int gebeGebotAb(String nutzername, float gebot) {
 		String heute = getDatumAlsString(null);
+		/*
+		 * Falls zu viele Stellen nach dem Komma, abschneiden damit nur
+		 * Geldbetraege genommen werden
+		 */
+		gebot = (float) ((int) (gebot * 100f)) / 100f;
 		int anzahlGebote = -1;
 		if (auktionsliste.containsKey(heute)) {
 			anzahlGebote = auktionsliste.get(heute).neuesGebot(nutzername,
@@ -178,11 +184,11 @@ public class AuktionLogik {
 		}
 		return anzahlGebote;
 	}
-	
-	public int getAnzahlGebote(String nutzername){
+
+	public int getAnzahlGebote(String nutzername) {
 		String heute = getDatumAlsString(null);
 		int ergebnis = 0;
-		if(auktionsliste.containsKey(heute)){
+		if (auktionsliste.containsKey(heute)) {
 			ergebnis = auktionsliste.get(heute).getAnzahlGebote(nutzername);
 		}
 		return ergebnis;
