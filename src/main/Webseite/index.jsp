@@ -199,7 +199,7 @@
 			<div class="modal-body">
 				<FORM NAME="form3" METHOD="POST">
 					<INPUT TYPE="HIDDEN" NAME="UGebot"> <INPUT TYPE="text"
-						placeholder="Gebot" id="Gebot"> <br> <INPUT
+						placeholder="Gebot" id="Gebot"> &euro; <br> <INPUT
 						TYPE="button" VALUE="bieten" ONCLICK="gebotAbgeben()">
 				</FORM>
 				Anzahl der Gebote für das heutige Produkt:

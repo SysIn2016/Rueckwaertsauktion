@@ -95,7 +95,7 @@ window.onclick = function(event) {
 	if (event.target == userRegistrierenPopup) {
 		userRegistrierenPopup.style.display = "none";
 	}
-	if (event.target == userBietenPopup) {
-		userBietenPopup.style.display = "none";
+	if (event.target == bietenPopup) {
+		bietenPopup.style.display = "none";
 	}
 }
