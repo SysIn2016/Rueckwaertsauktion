@@ -46,9 +46,11 @@
 
          out.println("<html>");
          out.println("<head>");
+         out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"Rueckwaertsauktion.css\">");
          out.println("<title>Produkt eingestellt</title>");  
          out.println("</head>");
-         out.println("<body>");
+         out.println("<body bgcolor=\"#D3FFCE\">");
+         out.println("<div class=\"main\">");
          String fileName ="";
          String prName ="";
          String prBeschreibung ="";
@@ -83,11 +85,12 @@
             	}
             }
          }
-         out.println(prName + "<br>");
-         out.println(prBeschreibung + "<br>");
+         out.println("<h2>" + prName + "</h2>" + "<br>");
+         out.println(prBeschreibung + "<br><br>");
          out.println("<img alt=\"Produktbild?\" src=\""+ link +"\"> " + "<br>");
          out.println("<a href=\"index.jsp\" title=\"Best&auml;tigen\">okay</a>");
          logik.erzeugeProdukt(prName, prBeschreibung, (String)session.getAttribute("Name"), link);
+         out.println("</div>");
          out.println("</body>");
          out.println("</html>");
       }catch(Exception ex) {
@@ -98,7 +101,9 @@
       out.println("<head>");
       out.println("<title>Servlet upload</title>");  
       out.println("</head>");
-      out.println("<body>");
+      out.println("<body bgcolor=\"#D3FFCE\">");
+      out.println("<div class=\"main\">");
+      out.println("</div>");
       out.println("<p>No file uploaded</p>"); 
       out.println("</body>");
       out.println("</html>");
