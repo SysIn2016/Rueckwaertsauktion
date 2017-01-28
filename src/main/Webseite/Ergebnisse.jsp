@@ -8,11 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body bgcolor="#D3FFCE">
 	<%
 		for (String erg : logik.gibErgebnisse()) {
 			out.print(erg + "<br>");
 		}
+	out.println("<a href=\"index.jsp\" title=\"zur&uuml;ck\">zur&uuml;ck</a>");
 	%>
 </body>
 </html>
