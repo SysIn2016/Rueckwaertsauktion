@@ -34,10 +34,8 @@ public class Nutzerverwaltung {
 
 	private NutzerModel nm;
 	private NutzerDao ndao;
-	// Der Vollqualifizierte Name des Administrators im AD
 	final static String ADMIN_NAME = "cn=Manager,dc=sysin,dc=de";
 	final static String ADMIN_PASSWORD = "M4rioBRB";
-	// User Standardpfad von dem die Suche im AD ausgehen soll
 	final static String SEARCH_BASE = "ou=Users,dc=sysin,dc=de";
 
 	static LdapContext ctx;
@@ -83,9 +81,7 @@ public class Nutzerverwaltung {
 	}
 
 	/**
-	 * In dieser Methode muss geprueft werden, ob der Nutzername nicht evtl.
-	 * bereits vergeben ist. Sollte das der Fall sein, wird kein neuer Benutzer
-	 * angelegt und false zuruekcgegeben.
+	 * Diese Methode dient der Registrierung eines Kunden.
 	 * 
 	 * @param vorname
 	 * @param nachname
@@ -101,11 +97,9 @@ public class Nutzerverwaltung {
 	 */
 	public boolean registrieren(String vorname, String nachname, String username, String emailadresse, String passwort,
 			String kontonummer, String iban, String bic) throws Exception {
+		
 		boolean ergebnis = true;
-		/*
-		 * Hier muss der code zur pruefung hin, ob der Username bereits vergeben
-		 * ist, und das eventuelle Anlegen des neuen Nutzers.
-		 */
+		
 		init();
 
 		String entryDN = "uid=" + username + ",ou=Users,dc=sysin,dc=de";
@@ -116,11 +110,10 @@ public class Nutzerverwaltung {
 		Attribute mail = new BasicAttribute("mail", emailadresse);
 		Attribute password = new BasicAttribute("userPassword", passwort);
 		Attribute oc = new BasicAttribute("objectClass", "inetOrgPerson");
-		// DirContext ctx = null;
 
 		try {
 
-			// build the entry
+			// Eintrag zusammensetzen
 			BasicAttributes entry = new BasicAttributes();
 			entry.put(cn);
 			entry.put(sn);
@@ -143,14 +136,13 @@ public class Nutzerverwaltung {
 	}
 
 	/**
-	 * Methode zum Senden einer E-Mail zur bestaetigung der Registrierung.
+	 * Methode zum Senden einer E-Mail zur Bestaetigung der Registrierung.
 	 * 
 	 * @param emailadresse
 	 *            , E-Mailadresse des neuen Nutzers
 	 */
 	public void sendeRegistrationsmail(String benutzername) throws IOException {
 
-		// Welche Adresse?
 		String mailFrom = "der_kakerlak@web.de";
 		String mailTo = "der_kakerlak@web.de";
 		String mailBody = "Hallo " + benutzername
@@ -172,7 +164,6 @@ public class Nutzerverwaltung {
 
 			AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient();
 
-			// Region anpassen?
 			Region REGION = Region.getRegion(Regions.US_WEST_2);
 			client.setRegion(REGION);
 
@@ -185,9 +176,9 @@ public class Nutzerverwaltung {
 	}
 
 	/**
-	 * Wir initialisieren die Verbindung zum LDAP Service Die zum Zugriff
-	 * notwendigen Daten legen wir in einer Hashtable ab und übergeben diese an
-	 * den InitialLdapContext, der mit den darin enthaltenen Informationen die
+	 * Verbindung zum LDAP Service initialisieren, die zum Zugriff
+	 * notwendigen Daten in einer Hashtable ablegen und an
+	 * den InitialLdapContext uebergeben, der mit den darin enthaltenen Informationen die
 	 * Verbindung aufbaut.
 	 * 
 	 * @throws Exception
@@ -198,7 +189,6 @@ public class Nutzerverwaltung {
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.SECURITY_PRINCIPAL, ADMIN_NAME);
 		env.put(Context.SECURITY_CREDENTIALS, ADMIN_PASSWORD);
-		// Der entsprechende Domänen-Controller
 		env.put(Context.PROVIDER_URL, "ldap://52.24.248.222:389");
 		ctx = new InitialLdapContext(env, null);
 	}
