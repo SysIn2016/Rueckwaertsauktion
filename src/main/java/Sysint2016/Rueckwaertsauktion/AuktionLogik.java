@@ -57,7 +57,7 @@ public class AuktionLogik {
 	 *         false, das Produkt konnte nicht eingefuegt werden, da bereits ein
 	 *         anderes Produkt an dem Tag versteigert werden soll
 	 */
-	public static boolean setzeAuktion(String datum, int produktID) {
+	public boolean setzeAuktion(String datum, int produktID) {
 		boolean eingefuegt = false;
 		if (!auktionsliste.containsKey(datum)) {
 			auktionsliste.put(datum, new Auktion(produktID));
