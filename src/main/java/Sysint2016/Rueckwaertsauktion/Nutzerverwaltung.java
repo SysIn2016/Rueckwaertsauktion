@@ -1,5 +1,8 @@
 package Sysint2016.Rueckwaertsauktion;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
 import javax.naming.Context;
@@ -8,14 +11,12 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
-import java.util.jar.Attributes;
 import javax.naming.directory.Attribute;
 import javax.naming.directory.BasicAttribute;
 import javax.naming.directory.BasicAttributes;
 
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
@@ -142,7 +143,20 @@ public class Nutzerverwaltung {
 	 *            , E-Mailadresse des neuen Nutzers
 	 */
 	public void sendeRegistrationsmail(String benutzername) throws IOException {
+		File credentials1 = new File("src/main/Webseite/Credentials.txt");
+		String line = "";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(credentials1));
+			line = br.readLine();
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		AWSCredentials credentials = new BasicAWSCredentials(
+				line.split(",")[0], line.split(",")[1]);
 
+		
 		String mailFrom = "der_kakerlak@web.de";
 		String mailTo = "der_kakerlak@web.de";
 		String mailBody = "Hallo " + benutzername
@@ -159,10 +173,11 @@ public class Nutzerverwaltung {
 
 		SendEmailRequest request = new SendEmailRequest().withSource(mailFrom).withDestination(destination)
 				.withMessage(message);
+		
 
 		try {
 
-			AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient();
+			AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
 
 			Region REGION = Region.getRegion(Regions.US_WEST_2);
 			client.setRegion(REGION);
