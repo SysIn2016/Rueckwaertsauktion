@@ -42,8 +42,7 @@ public class Nutzerverwaltung {
 	static LdapContext ctx;
 
 	public Nutzerverwaltung() {
-		nm = new NutzerModel();
-		ndao = nm;
+		
 	}
 
 	/**
@@ -98,6 +97,9 @@ public class Nutzerverwaltung {
 	 */
 	public boolean registrieren(String vorname, String nachname, String username, String emailadresse, String passwort,
 			String kontonummer, String iban, String bic) throws Exception {
+		
+		nm = new NutzerModel();
+		ndao = nm;
 		
 		boolean ergebnis = true;
 		
