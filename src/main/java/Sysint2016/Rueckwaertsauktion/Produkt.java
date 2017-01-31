@@ -19,7 +19,8 @@ public class Produkt {
 	private String produktname;
 	private String produktbeschreibung;
 	/*
-	 * Die KundenID des Einstellers des Produkts. Die ID entspricht dem Usernamen.
+	 * Die KundenID des Einstellers des Produkts. Die ID entspricht dem
+	 * Usernamen.
 	 */
 	private String einstellerID;
 	/*
@@ -30,9 +31,13 @@ public class Produkt {
 	static {
 		naechsteID = 0;
 	}
-	
-	public Produkt(){
-		
+
+	/**
+	 * Konstruktor für die Verwendung durch DynamoDB. Die Attribute werden durch
+	 * die Setter gefüllt.
+	 */
+	public Produkt() {
+
 	}
 
 	/**
@@ -59,7 +64,6 @@ public class Produkt {
 	 * synchronized.
 	 */
 	private synchronized void generiereProduktID() {
-		this.produktID = naechsteID++;
 		/*
 		 * Die IDs sollen nicht negativ werden. Sollte die Variable naechsteID
 		 * den Sprung von der groessten zur kleinsten Integerzahl machen, wird
@@ -68,6 +72,7 @@ public class Produkt {
 		if (naechsteID < 0) {
 			naechsteID = 0;
 		}
+		this.produktID = naechsteID++;
 	}
 
 	@DynamoDBAttribute
@@ -110,11 +115,11 @@ public class Produkt {
 	public int getProduktID() {
 		return produktID;
 	}
-	
-	public void setProduktID(int ProduktID){
-		this.produktID = ProduktID;
-		if (naechsteID <= produktID){
-			naechsteID++;
+
+	public void setProduktID(int produktID) {
+		this.produktID = produktID;
+		if (naechsteID <= produktID) {
+			naechsteID = produktID + 1;
 		}
 	}
 }
