@@ -1,4 +1,4 @@
-package Sysint2016.Rueckwaertsauktion;
+package Sysint2016.Rueckwaertsauktion.Nutzer;
 
 import java.io.BufferedReader;
 import java.io.File;

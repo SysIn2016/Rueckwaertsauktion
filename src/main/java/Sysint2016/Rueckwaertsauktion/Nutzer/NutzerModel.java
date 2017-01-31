@@ -1,4 +1,6 @@
-package Sysint2016.Rueckwaertsauktion;
+package Sysint2016.Rueckwaertsauktion.Nutzer;
+
+import Sysint2016.Rueckwaertsauktion.Logik.InitDB;
 
 public class NutzerModel implements NutzerDao{
 	InitDB initDb;

@@ -1,4 +1,4 @@
-package Sysint2016.Rueckwaertsauktion;
+package Sysint2016.Rueckwaertsauktion.Produkt;
 
 /**
  * Diese Klasse enthaelt die Logik zum Verwalten der Produkte. <br>

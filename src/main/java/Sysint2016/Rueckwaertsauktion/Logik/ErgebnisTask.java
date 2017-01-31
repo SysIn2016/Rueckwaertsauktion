@@ -1,4 +1,4 @@
-package Sysint2016.Rueckwaertsauktion;
+package Sysint2016.Rueckwaertsauktion.Logik;
 
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,7 +19,7 @@ public class ErgebnisTask extends TimerTask {
 	 * 
 	 * @param auktionsliste
 	 */
-	ErgebnisTask(ConcurrentHashMap<String, Auktion> auktionsliste) {
+	public ErgebnisTask(ConcurrentHashMap<String, Auktion> auktionsliste) {
 		this.auktionsliste = auktionsliste;
 	}
 

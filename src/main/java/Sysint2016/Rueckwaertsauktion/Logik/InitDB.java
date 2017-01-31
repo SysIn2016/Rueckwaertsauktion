@@ -1,4 +1,4 @@
-package Sysint2016.Rueckwaertsauktion;
+package Sysint2016.Rueckwaertsauktion.Logik;
 
 
 import java.io.BufferedReader;
@@ -17,6 +17,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.util.TableUtils;
+
+import Sysint2016.Rueckwaertsauktion.Nutzer.Nutzer;
+import Sysint2016.Rueckwaertsauktion.Produkt.Produkt;
 
 public class InitDB {
 	

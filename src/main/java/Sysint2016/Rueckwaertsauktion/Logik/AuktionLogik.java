@@ -1,4 +1,4 @@
-package Sysint2016.Rueckwaertsauktion;
+package Sysint2016.Rueckwaertsauktion.Logik;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -7,6 +7,10 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
+
+import Sysint2016.Rueckwaertsauktion.Produkt.Produkt;
+import Sysint2016.Rueckwaertsauktion.Produkt.ProduktModel;
+import Sysint2016.Rueckwaertsauktion.Produkt.Produktverwaltung;
 
 /**
  * Diese Klasse enthaelt die Auktionslogik. <br>

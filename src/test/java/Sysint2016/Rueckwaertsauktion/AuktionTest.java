@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import Sysint2016.Rueckwaertsauktion.Logik.Auktion;
+
 public class AuktionTest {
 	Auktion auktion;
 	

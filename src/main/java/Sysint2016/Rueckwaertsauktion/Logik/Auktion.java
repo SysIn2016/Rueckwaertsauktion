@@ -1,4 +1,4 @@
-package Sysint2016.Rueckwaertsauktion;
+package Sysint2016.Rueckwaertsauktion.Logik;
 
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,7 +16,7 @@ public class Auktion {
 	 */
 	private ConcurrentHashMap<Float, Boolean> auswertung;
 
-	Auktion(int produktID) {
+	public Auktion(int produktID) {
 		gebote = new ConcurrentHashMap<String, LinkedList<Float>>();
 		auswertung = new ConcurrentHashMap<Float, Boolean>();
 		this.produktID = produktID;

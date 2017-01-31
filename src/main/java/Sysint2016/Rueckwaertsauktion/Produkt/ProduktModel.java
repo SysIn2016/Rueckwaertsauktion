@@ -1,4 +1,6 @@
-package Sysint2016.Rueckwaertsauktion;
+package Sysint2016.Rueckwaertsauktion.Produkt;
+
+import Sysint2016.Rueckwaertsauktion.Logik.InitDB;
 
 public class ProduktModel implements Produktverwaltung{
 	InitDB initDb;
