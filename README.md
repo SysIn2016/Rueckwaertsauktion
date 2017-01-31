@@ -3,3 +3,5 @@
 
 Das ist das Projekt Rückwärtsauktion für das Fach Systemintegration.
 Die Dokumentation befindet sich als OpenOffice-Daokument ebenfalls in dem Repository.
+
+Unter dieser Adresse läuft das Programm aktuell: http://52.205.251.160:8080/
